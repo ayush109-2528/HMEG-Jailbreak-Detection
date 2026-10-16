@@ -1,0 +1,2 @@
+import { defineConfig } from '@playwright/test';
+export default defineConfig({testDir:'./tests/e2e',timeout:60000,expect:{timeout:20000},workers:1,fullyParallel:false,reporter:[['list'],['json',{outputFile:'test-output/regression.json'}]],use:{baseURL:'http://127.0.0.1:5176',channel:'msedge',headless:true,viewport:{width:1440,height:950},screenshot:'only-on-failure',trace:'retain-on-failure'},outputDir:'test-output/artifacts'});

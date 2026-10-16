@@ -1,0 +1,22 @@
+services:
+  api:
+    build: ./backend
+    env_file: ./backend/.env
+    environment:
+      MODEL_DIR: /models
+    ports:
+      - "8000:8000"
+    volumes:
+      - model_artifacts:/models
+    restart: unless-stopped
+  worker:
+    build: ./backend
+    command: ["python", "-m", "scripts.worker", "run"]
+    env_file: ./backend/.env
+    environment:
+      MODEL_DIR: /models
+    volumes:
+      - model_artifacts:/models
+    restart: unless-stopped
+volumes:
+  model_artifacts:
