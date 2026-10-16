@@ -77,3 +77,17 @@ def test_public_consent_creates_readable_result(client):
     assert response.json()['saved'] is True
     identifier = response.json()['result_id']
     assert client.get('/api/live-tests/' + identifier).json()['prompt'] == 'test consent fixture'
+
+
+def test_reproducibility_handles_linux_cpu_distribution(client, monkeypatch):
+    actual = main.importlib.metadata.version
+    def cpu_only(name):
+        if name == 'xgboost':
+            raise main.importlib.metadata.PackageNotFoundError(name)
+        if name == 'xgboost-cpu':
+            return '3.4.1'
+        return actual(name)
+    monkeypatch.setattr(main.importlib.metadata, 'version', cpu_only)
+    response = client.get('/api/reproducibility')
+    assert response.status_code == 200
+    assert response.json()['versions']['xgboost'] == '3.4.1'

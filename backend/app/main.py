@@ -116,6 +116,17 @@ def routing():
     return {'low': settings.low, 'high': settings.high, 'final_threshold': settings.threshold, 'note': 'Operator-configured, tunable experimental thresholds.'}
 
 
+def installed_version(package):
+    # Linux's small CPU wheel exports xgboost but registers as xgboost-cpu.
+    distributions = (package, 'xgboost-cpu') if package == 'xgboost' else (package,)
+    for distribution in distributions:
+        try:
+            return importlib.metadata.version(distribution)
+        except importlib.metadata.PackageNotFoundError:
+            continue
+    return None
+
+
 @app.get('/api/reproducibility')
 def reproducibility(request: Request):
     model = store(request)
@@ -125,7 +136,7 @@ def reproducibility(request: Request):
         dataset = None
     return {'dataset': dataset, 'model': model.status(), 'routing': routing(), 'random_seed': 42,
         'git_commit': os.getenv('GIT_COMMIT') or None, 'python': platform.python_version(),
-        'versions': {package: importlib.metadata.version(package) for package in ['scikit-learn', 'numpy', 'pandas', 'xgboost', 'pymongo', 'fastapi']},
+        'versions': {package: installed_version(package) for package in ['scikit-learn', 'numpy', 'pandas', 'xgboost', 'pymongo', 'fastapi', 'onnxruntime', 'tokenizers']},
         'training': model.bundle.get('training') if model.bundle else None}
 
 

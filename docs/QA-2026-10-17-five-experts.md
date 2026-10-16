@@ -8,8 +8,11 @@ Twenty actual evaluations were saved: HMEG, five experts, five flat fusions, fiv
 
 The Meaning Expert uses frozen all-MiniLM-L6-v2 quantized ONNX embeddings plus Logistic Regression. The encoder is not fine-tuned. Official revision: 1110a243fdf4706b3f48f1d95db1a4f5529b4d41. The training manifest includes asset SHA-256 values, which the API verifies on loading. Only the first 256 wordpieces are encoded.
 
-Validation: 24 backend tests passed; 22 browser regression tests passed; production frontend build passed; Linux dependency wheel resolution passed. A real local API request routed to Layer 2 and executed all five experts, with Meaning score 0.922024130821228 and no prompt storage. All-five forced flat-inference checks passed for short and 9,750-character inputs.
+Validation: 25 backend tests passed; 22 browser regression tests passed; production frontend build passed; Linux dependency wheel resolution passed. A real local API request routed to Layer 2 and executed all five experts, with Meaning score 0.922024130821228 and no prompt storage. All-five forced flat-inference checks passed for short and 9,750-character inputs.
 
 Memory on the local Windows host: standalone inference peak RSS about 340 MiB; running API sampled RSS about 371 MiB. These are not deployed Linux container measurements. No Docker engine was available locally, so the Render build and hosted inference still require verification after publication.
 
 Rollback artifact preserved locally at backend/models/hmeg-four-expert-rollback.joblib. Existing four-expert experiment history remains in MongoDB. Runtime training is not enabled on the free API service; training remains an operator task on a PC or separately configured batch worker.
+
+
+Deployment verification: Vercel serves the new literature comparison and flat-ensemble explanation. Render reports model version f64e7603e6f94fb38edb27dd96948ef1 and meaning_available=true. A browser request from the production Vercel origin returned HTTP 200, decision_layer=2, experts_executed=5, Meaning score 0.922024130821228, and saved=false. Dataset, experiments, experts, and code endpoints returned HTTP 200 with the correct CORS origin. A Linux-only xgboost-cpu distribution-name lookup failure was detected on the reproducibility endpoint and covered by a new regression test.
