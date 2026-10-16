@@ -45,3 +45,18 @@ The worker is not self-training from predictions: it uses labelled imported rese
 6. Queue a small operator training job, inspect its completion, and confirm artifact version changes only when published.
 
 A MongoDB import alone does not update an existing Vercel deployment. Deploy this new frontend and API configuration explicitly; the old Vercel site remains separate.
+
+
+## Five-expert deployment on the existing Render free service
+
+The Meaning Expert uses the pinned official all-MiniLM-L6-v2 quantized ONNX encoder (~23 MB), with Logistic Regression. PyTorch and sentence-transformers are not required. The encoder is frozen, not fine-tuned. Training and inference use identical pooling, truncation and quantization. The training manifest records encoder revision and checksums; runtime verifies the deployed assets against them.
+
+1. Train on the PC/worker: from backend run `python -m scripts.download_semantic`, then `python -m scripts.train --semantic --max-train 20000 --max-eval 1000 --studies`. Review the candidate before promoting to `models/hmeg.joblib`.
+2. Commit the approved `backend/models/hmeg.joblib` explicitly (it is Git-ignored by default), together with the code and pinned requirements. Do not commit .env or raw dataset files.
+3. Render: Dockerfile Path `backend/Dockerfile`, build context `backend`, Root Directory empty, `MODEL_DIR=/models`, `SEMANTIC_MODEL_DIR=/models/semantic`. The Dockerfile sets the semantic path and downloads the pinned assets during build. Keep MongoDB and frontend-origin environment variables unchanged.
+4. Use one Uvicorn process (the default Docker CMD). Do not add multiple worker processes on the free service. Model assets live in the image, so cold starts do not need downloads or a paid disk.
+5. Redeploy Render and Vercel. Verify `/api/health` reports `meaning_available: true`, then test an uncertain prompt and check the Meaning Expert actually executes. Confident Layer 1 exits correctly skip it.
+
+The free service remains an inference host. Training runs on the PC or a separately configured batch worker. Local Windows memory measurements are not a guarantee of Linux hosting capacity; check Render memory and logs after deployment. No paid service is provisioned by these changes.
+
+Published comparison numbers are in the frontend comparison page only. They are literature context, never inserted into MongoDB as locally measured experiments.

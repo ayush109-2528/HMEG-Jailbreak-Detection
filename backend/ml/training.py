@@ -74,6 +74,9 @@ def train(*, max_train=20000, max_eval=1000, semantic=False, publish=False, held
             raise ValueError('Dataset import must finish before training.')
         (train_set, val, test), manifest = load_data(db, max_train, max_eval, held_out_source)
         manifest['dataset_sha256'] = meta['value']['sha256']
+        if semantic:
+            from ml.experts.semantic_encoder import asset_dir
+            manifest['semantic_encoder'] = json.loads((asset_dir() / 'manifest.json').read_text())
         experts = {}
         for key, cls in CLASSES.items():
             if key == 'meaning' and not semantic:

@@ -29,7 +29,9 @@ test('live HMEG predicts with actual execution records and clear resets',async({
   await page.getByRole('button',{name:'Analyze prompt',exact:true}).click();
   await expect(page.getByText('FINAL CLASSIFICATION',{exact:true})).toBeVisible();
   await expect(page.getByRole('heading',{name:'Execution trace',exact:true})).toBeVisible();
-  await expect(page.getByText('Reduced expert configuration:',{exact:false})).toBeVisible();
+  const health = await (await page.request.get('/api/health')).json();
+  if (health.meaning_available) await expect(page.getByText('Reduced expert configuration:',{exact:false})).toHaveCount(0);
+  else await expect(page.getByText('Reduced expert configuration:',{exact:false})).toBeVisible();
   await expect(page.getByRole('checkbox')).not.toBeChecked();
   const audit=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa']).analyze();expect(audit.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))).toEqual([]);
   await page.screenshot({path:'test-output/dark-live-result.png'});
@@ -102,4 +104,31 @@ test('live API contracts and private prediction do not persist prompts',async({r
   const after=await (await request.get(base+'/database/stats')).json();expect(after.counts.live_tests).toBe(before.counts.live_tests);
   expect((await request.get(base+'/dataset/samples?limit=101')).status()).toBe(422);
   expect((await request.post(base+'/train/hmeg')).status()).toBe(404);
+});
+
+// React Flow also uses .source; code-block spacing must never style its handles.
+test('diagram connector handles stay small and clear of labels', async ({page}) => {
+  await page.goto('/architecture');
+  const handles = page.locator('.react-flow__handle.source');
+  await expect(handles.first()).toBeVisible();
+  const sizes = await handles.evaluateAll(nodes => nodes.map(node => {
+    const style = getComputedStyle(node);
+    return {width: parseFloat(style.width), height: parseFloat(style.height), padding: style.padding};
+  }));
+  expect(sizes.length).toBeGreaterThan(0);
+  for (const size of sizes) {
+    expect(size.width).toBeLessThanOrEqual(8);
+    expect(size.height).toBeLessThanOrEqual(8);
+    expect(size.padding).toBe('0px');
+  }
+});
+
+test('literature accuracy is cited and separate from local evidence', async ({page}) => {
+  await page.goto('/comparison');
+  await expect(page.getByRole('heading', {name: 'What is a flat ensemble?', exact: true})).toBeVisible();
+  await expect(page.getByRole('heading', {name: 'Published single-guardrail accuracy', exact: true})).toBeVisible();
+  await expect(page.getByRole('cell', {name: '93.40%', exact: true})).toBeVisible();
+  await expect(page.getByRole('cell', {name: '35.13%', exact: true})).toBeVisible();
+  await expect(page.getByRole('link', {name: /Read the paper/})).toHaveAttribute('href', 'https://arxiv.org/abs/2512.19011');
+  await expect(page.getByText(/HMEG uses different data and splits/)).toBeVisible();
 });

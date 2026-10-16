@@ -47,7 +47,7 @@ For a new machine, create a Python 3.12 environment (`python -m venv .venv`) in 
 
 Word + Format scores produce a weighted fast score. At or below LOW_THRESHOLD, exit benign; at or above HIGH_THRESHOLD, exit jailbreak. Uncertain prompts execute available deeper experts and learned fusion. Every result reports actual execution/skipped status, scores, timings, route and artifact version. Missing models produce HTTP 503, never simulated outputs.
 
-The optional Meaning Expert uses a **frozen neural sentence encoder** plus Logistic Regression. This is a hybrid representation, not a fine-tuned generative model. Without that encoder, the system trains a clearly labelled four-expert configuration. Install `requirements-semantic.txt` and cache `sentence-transformers/all-MiniLM-L6-v2` before requesting `--semantic`.
+The optional Meaning Expert uses a **frozen neural sentence encoder** plus Logistic Regression. This is a hybrid representation, not a fine-tuned generative model. Without that encoder, the system trains a clearly labelled four-expert configuration. Install `requirements.txt`, run `python -m scripts.download_semantic` from backend, then train with `--semantic`. The CPU implementation uses the official pinned quantized ONNX MiniLM model, masked mean pooling and L2 normalization, capped at 256 wordpieces. Docker downloads the same assets at build time; requests do not download models.
 
 ## Dataset and honest evaluation
 

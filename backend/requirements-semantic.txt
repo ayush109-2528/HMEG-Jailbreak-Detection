@@ -1,2 +1,2 @@
+# Semantic ONNX runtime is included in the standard deployment.
 -r requirements.txt
-sentence-transformers>=3,<6

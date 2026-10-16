@@ -15,6 +15,14 @@ class ModelStore:
             # Artifacts are installed by the researcher, never uploaded by visitors.
             bundle = joblib.load(target)
             if 'meaning' in bundle['experts']:
+                from ml.experts.semantic_encoder import asset_dir
+                import hashlib
+                expected = bundle.get('training', {}).get('semantic_encoder', {})
+                for name, item in expected.get('files', {}).items():
+                    if name not in ('model.onnx', 'tokenizer.json'):
+                        raise ValueError('Unexpected semantic asset')
+                    if hashlib.sha256((asset_dir() / name).read_bytes()).hexdigest() != item['sha256']:
+                        raise ValueError('Semantic assets differ from training')
                 bundle['experts']['meaning'].encoder()
             meta = bundle['metas'][bundle['preferred_meta']]
             self.engine = HMEG(bundle['experts'], meta, Router(config.low, config.high),

@@ -42,7 +42,8 @@ def test_invalid_prompt(client):
 def test_code_whitelist(client):
     response = client.get('/api/code')
     assert response.status_code == 200
-    assert len(response.json()) == 12
+    assert len(response.json()) == 13
+    assert any(row['key'] == 'semantic_encoder' for row in response.json())
     assert all('.env' not in row['file'] for row in response.json())
     assert all('pending implementation' not in row['code'] for row in response.json())
 

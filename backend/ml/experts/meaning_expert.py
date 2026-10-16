@@ -3,7 +3,7 @@ from .base import Expert
 
 
 class MeaningExpert(Expert):
-    method = 'Cached all-MiniLM-L6-v2 sentence embeddings + Logistic Regression'
+    method = 'Quantized MiniLM-L6-v2 ONNX sentence embeddings + Logistic Regression'
 
     def __init__(self, encoder_path='sentence-transformers/all-MiniLM-L6-v2'):
         self.encoder_path = encoder_path
@@ -12,11 +12,8 @@ class MeaningExpert(Expert):
 
     def encoder(self):
         if self._encoder is None:
-            try:
-                from sentence_transformers import SentenceTransformer
-                self._encoder = SentenceTransformer(self.encoder_path, local_files_only=True)
-            except (ImportError, OSError, RuntimeError) as exc:
-                raise RuntimeError('Meaning Expert unavailable: install sentence-transformers and cache MiniLM locally.') from exc
+            from .semantic_encoder import SemanticEncoder
+            self._encoder = SemanticEncoder()
         return self._encoder
 
     def fit(self, prompts, labels):
@@ -33,3 +30,8 @@ class MeaningExpert(Expert):
 
     def __getstate__(self):
         return {**self.__dict__, '_encoder': None}
+
+    def inspect(self, prompt):
+        return {"method": self.method, "encoder": "all-MiniLM-L6-v2",
+                "runtime": "quantized ONNX CPU", "max_tokens": 256,
+                "note": "Only the first 256 wordpieces are encoded; the frozen encoder is not fine-tuned."}
