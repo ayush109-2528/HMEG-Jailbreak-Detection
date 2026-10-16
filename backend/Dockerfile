@@ -7,6 +7,8 @@ COPY database ./database
 COPY ml ./ml
 COPY scripts ./scripts
 RUN useradd --create-home --uid 10001 hmeg && mkdir -p /models && chown hmeg /models
+# Package only the approved inference artifact for hosts without a persistent disk.
+COPY --chown=hmeg:hmeg models/hmeg.joblib /models/hmeg.joblib
 USER hmeg
 ENV MODEL_DIR=/models PYTHONUNBUFFERED=1
 EXPOSE 8000

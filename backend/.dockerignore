@@ -1,6 +1,7 @@
 .env*
 .venv
-models
+models/*
+!models/hmeg.joblib
 __pycache__
 .pytest_cache
 tests
