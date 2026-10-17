@@ -1,0 +1,348 @@
+{
+  "1": {
+    "prediction": "benign",
+    "label": 0,
+    "action": "Allow prompt",
+    "final_probability": 0.18947009133433326,
+    "decision_layer": 1,
+    "model_version": "4f44b61012ee4344958544a480186c9a",
+    "routing": {
+      "fast_score": 0.18947009133433326,
+      "low_threshold": 0.2,
+      "high_threshold": 0.8,
+      "routed_to_layer_2": false,
+      "decision": "benign",
+      "final_threshold": 0.5
+    },
+    "experts": {
+      "word": {
+        "executed": true,
+        "status": "executed",
+        "score": 0.10605144727859406,
+        "latency_ms": 1.5650326386094093,
+        "details": {
+          "recognized_terms": [
+            {
+              "term": "simple terms",
+              "tfidf": 0.5180204421249632
+            },
+            {
+              "term": "in simple",
+              "tfidf": 0.44138193767868605
+            },
+            {
+              "term": "terms",
+              "tfidf": 0.39554431891069797
+            },
+            {
+              "term": "explain how",
+              "tfidf": 0.36936949213844195
+            },
+            {
+              "term": "simple",
+              "tfidf": 0.3463189133931482
+            },
+            {
+              "term": "explain",
+              "tfidf": 0.26279823161256355
+            },
+            {
+              "term": "in",
+              "tfidf": 0.16892075578937504
+            },
+            {
+              "term": "how",
+              "tfidf": 0.16252308955213884
+            }
+          ],
+          "note": "Highest TF-IDF features, not causal explanations."
+        }
+      },
+      "format": {
+        "executed": true,
+        "status": "executed",
+        "score": 0.27288873539007247,
+        "latency_ms": 3.1151073053479195,
+        "details": {
+          "character_count": 44,
+          "word_count": 8,
+          "approx_token_count": 9,
+          "average_word_length": 4.625,
+          "special_ratio": 0.022727272727272728,
+          "punctuation_ratio": 0.022727272727272728,
+          "digit_ratio": 0,
+          "uppercase_ratio": 0.022727272727272728,
+          "whitespace_ratio": 0.1590909090909091,
+          "unicode_ratio": 0,
+          "entropy": 4.000776858014933,
+          "repeated_token_ratio": 0,
+          "repeated_character_ratio": 0,
+          "prefix_symbol_ratio": 0.022727272727272728,
+          "suffix_symbol_ratio": 0.022727272727272728
+        }
+      },
+      "meaning": {
+        "executed": false,
+        "status": "skipped",
+        "score": null,
+        "latency_ms": null,
+        "details": {}
+      },
+      "pattern": {
+        "executed": false,
+        "status": "skipped",
+        "score": null,
+        "latency_ms": null,
+        "details": {}
+      },
+      "instruction": {
+        "executed": false,
+        "status": "skipped",
+        "score": null,
+        "latency_ms": null,
+        "details": {}
+      }
+    },
+    "experts_executed": 2,
+    "trace": [
+      {
+        "stage": "Prompt received",
+        "at_ms": 0,
+        "key": "input"
+      },
+      {
+        "stage": "Preprocessing complete",
+        "key": "preprocessing",
+        "at_ms": 0.004520639777183533
+      },
+      {
+        "stage": "Word Expert complete",
+        "key": "word",
+        "at_ms": 168.5711918398738
+      },
+      {
+        "stage": "Format Expert complete",
+        "key": "format",
+        "at_ms": 171.77642043679953
+      },
+      {
+        "stage": "Router evaluated",
+        "key": "router",
+        "at_ms": 171.78748082369566
+      },
+      {
+        "stage": "Final decision returned",
+        "key": "decision",
+        "at_ms": 171.79261054843664
+      }
+    ],
+    "total_latency_ms": 171.87888361513615,
+    "layer1_time_ms": 171.78792133927345,
+    "layer2_time_ms": 0,
+    "reduced_expert_set": false,
+    "agreement": {
+      "jailbreak_votes": 0,
+      "total": 2,
+      "variance": 0.006958670176098114,
+      "description": "Strong Agreement"
+    },
+    "saved": false
+  },
+  "2": {
+    "prediction": "jailbreak",
+    "label": 1,
+    "action": "Block / flag prompt",
+    "final_probability": 0.9354873895645142,
+    "decision_layer": 2,
+    "model_version": "4f44b61012ee4344958544a480186c9a",
+    "routing": {
+      "fast_score": 0.489359519888227,
+      "low_threshold": 0.2,
+      "high_threshold": 0.8,
+      "routed_to_layer_2": true,
+      "decision": "uncertain",
+      "final_threshold": 0.5
+    },
+    "experts": {
+      "word": {
+        "executed": true,
+        "status": "executed",
+        "score": 0.2078223959426737,
+        "latency_ms": 1.3158060610294342,
+        "details": {
+          "recognized_terms": [
+            {
+              "term": "phrase",
+              "tfidf": 0.3535534516140145
+            },
+            {
+              "term": "instructions is",
+              "tfidf": 0.2716500711424629
+            },
+            {
+              "term": "phrase ignore",
+              "tfidf": 0.2716500711424629
+            },
+            {
+              "term": "with prompt",
+              "tfidf": 0.2716500711424629
+            },
+            {
+              "term": "the phrase",
+              "tfidf": 0.2709568281842278
+            },
+            {
+              "term": "injection",
+              "tfidf": 0.22632521645376108
+            },
+            {
+              "term": "prompt injection",
+              "tfidf": 0.22632521645376108
+            },
+            {
+              "term": "associated with",
+              "tfidf": 0.2211135911754506
+            }
+          ],
+          "note": "Highest TF-IDF features, not causal explanations."
+        }
+      },
+      "format": {
+        "executed": true,
+        "status": "executed",
+        "score": 0.7708966438337803,
+        "latency_ms": 89.34544678777456,
+        "details": {
+          "character_count": 139,
+          "word_count": 21,
+          "approx_token_count": 26,
+          "average_word_length": 5.666666666666667,
+          "special_ratio": 0.03597122302158273,
+          "punctuation_ratio": 0.03597122302158273,
+          "digit_ratio": 0,
+          "uppercase_ratio": 0.014388489208633094,
+          "whitespace_ratio": 0.14388489208633093,
+          "unicode_ratio": 0,
+          "entropy": 4.238580914205017,
+          "repeated_token_ratio": 0,
+          "repeated_character_ratio": 0.014388489208633094,
+          "prefix_symbol_ratio": 0.03125,
+          "suffix_symbol_ratio": 0.03125
+        }
+      },
+      "meaning": {
+        "executed": true,
+        "status": "executed",
+        "score": 0.9999350309371948,
+        "latency_ms": 99.39669631421566,
+        "details": {
+          "method": "Quantized MiniLM-L6-v2 ONNX sentence embeddings + Logistic Regression",
+          "encoder": "all-MiniLM-L6-v2",
+          "runtime": "quantized ONNX CPU",
+          "max_tokens": 256,
+          "note": "Only the first 256 wordpieces are encoded; the frozen encoder is not fine-tuned."
+        }
+      },
+      "pattern": {
+        "executed": true,
+        "status": "executed",
+        "score": 0.5549382567405701,
+        "latency_ms": 1.345386728644371,
+        "details": {
+          "character_count": 139,
+          "word_count": 21,
+          "approx_token_count": 26,
+          "average_word_length": 5.666666666666667,
+          "special_ratio": 0.03597122302158273,
+          "punctuation_ratio": 0.03597122302158273,
+          "digit_ratio": 0,
+          "uppercase_ratio": 0.014388489208633094,
+          "whitespace_ratio": 0.14388489208633093,
+          "unicode_ratio": 0,
+          "entropy": 4.238580914205017,
+          "repeated_token_ratio": 0,
+          "repeated_character_ratio": 0.014388489208633094,
+          "prefix_symbol_ratio": 0.03125,
+          "suffix_symbol_ratio": 0.03125,
+          "perplexity": "Not configured"
+        }
+      },
+      "instruction": {
+        "executed": true,
+        "status": "executed",
+        "score": 0.701383880138586,
+        "latency_ms": 2.1246783435344696,
+        "details": {
+          "matched_indicators": [
+            "ignore previous"
+          ],
+          "note": "Indicators are features, not proof of malicious intent."
+        }
+      }
+    },
+    "experts_executed": 5,
+    "trace": [
+      {
+        "stage": "Prompt received",
+        "at_ms": 0,
+        "key": "input"
+      },
+      {
+        "stage": "Preprocessing complete",
+        "key": "preprocessing",
+        "at_ms": 0.004279427230358124
+      },
+      {
+        "stage": "Word Expert complete",
+        "key": "word",
+        "at_ms": 108.94857160747051
+      },
+      {
+        "stage": "Format Expert complete",
+        "key": "format",
+        "at_ms": 198.50657507777214
+      },
+      {
+        "stage": "Router evaluated",
+        "key": "router",
+        "at_ms": 198.52116517722607
+      },
+      {
+        "stage": "Meaning Expert complete",
+        "key": "meaning",
+        "at_ms": 297.9317316785455
+      },
+      {
+        "stage": "Pattern Expert complete",
+        "key": "pattern",
+        "at_ms": 299.4630942121148
+      },
+      {
+        "stage": "Instruction Expert complete",
+        "key": "instruction",
+        "at_ms": 301.68533604592085
+      },
+      {
+        "stage": "Meta classifier complete",
+        "key": "meta",
+        "at_ms": 302.15292889624834
+      },
+      {
+        "stage": "Final decision returned",
+        "key": "decision",
+        "at_ms": 302.1550690755248
+      }
+    ],
+    "total_latency_ms": 302.21354123204947,
+    "layer1_time_ms": 198.52174445986748,
+    "layer2_time_ms": 103.63222379237413,
+    "reduced_expert_set": false,
+    "agreement": {
+      "jailbreak_votes": 4,
+      "total": 5,
+      "variance": 0.0688446906398249,
+      "description": "Mixed Signals"
+    },
+    "saved": false
+  }
+}
