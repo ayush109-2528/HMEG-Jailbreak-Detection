@@ -132,3 +132,33 @@ test('literature accuracy is cited and separate from local evidence', async ({pa
   await expect(page.getByRole('link', {name: /Read the paper/})).toHaveAttribute('href', 'https://arxiv.org/abs/2512.19011');
   await expect(page.getByText(/HMEG uses different data and splits/)).toBeVisible();
 });
+
+test('training coverage displays actual artifact partition counts', async ({page}) => {
+  const manifest = await (await page.request.get('/api/reproducibility')).json();
+  await page.goto('/reproducibility');
+  const panel = page.locator('.panel').filter({has:page.getByRole('heading',{name:'Training and evaluation coverage',exact:true})});
+  await expect(panel).toBeVisible();
+  for (const split of ['train','validation','test']) {
+    const formatted = await page.evaluate(value => Number(value).toLocaleString(undefined, {maximumFractionDigits:2}), manifest.training.used_split_counts[split]);
+    await expect(panel).toContainText(formatted);
+  }
+  await expect(panel).toContainText('Test rows are held out from both fitting stages');
+});
+
+for(const [path,title] of pages) test('light mode: '+path, async({page})=>{
+  await page.goto(path);
+  await page.getByRole('button',{name:'Toggle light theme',exact:true}).click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme','light');
+  await expect(page.getByRole('heading',{name:title,exact:true})).toBeVisible();
+  await expect(page.getByText(/Loading research data/)).toHaveCount(0);
+  const audit=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
+  expect(audit.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))).toEqual([]);
+  await page.screenshot({path:'test-output/light-'+(path==='/'?'dashboard':path.slice(1))+'.png',fullPage:true});
+});
+test('active expert accuracy identifies its held-out dataset',async({page})=>{
+  await page.goto('/experts');
+  await expect(page.getByRole('heading',{name:'Which test dataset produced these results?',exact:true})).toBeVisible();
+  await expect(page.getByText(/HMEG_300K_Augmented_Dataset.csv/)).toBeVisible();
+  await expect(page.getByRole('cell',{name:'98.04%',exact:true})).toBeVisible();
+  await expect(page.getByText(/predominantly synthetic/)).toBeVisible();
+});

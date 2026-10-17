@@ -18,3 +18,32 @@ input::placeholder,textarea::placeholder{color:#8fa3b8;opacity:1}
 @media(max-width:800px){.mini-node{font-size:10px;min-width:0}.mini-row{gap:7px}.pipeline-label{font-size:9px}.flow{height:480px}.verdict>strong{font-size:27px}}
 
 @media(max-width:800px){.sidebar{visibility:hidden}.sidebar.open{visibility:visible}}
+
+/* Theme-aware secondary text and data visualizations. */
+:root{--flow-node:#182332;--flow-active:#154a48;--flow-border:#526579;--flow-edge:#8c9eb0}
+html[data-theme=light]{--flow-node:#fff;--flow-active:#d9f1eb;--flow-border:#607587;--flow-edge:#526779}
+html[data-theme=light] .notice,html[data-theme=light] .trace span,html[data-theme=light] .code-nav small,html[data-theme=light] .prompt-preview small,html[data-theme=light] footer,html[data-theme=light] th{color:#526779}
+html[data-theme=light] .chart .recharts-text{fill:#526779}
+html[data-theme=light] .chart .recharts-legend-item-text{color:#526779!important}
+html[data-theme=light] input::placeholder,html[data-theme=light] textarea::placeholder{color:#526779}
+html[data-theme=light] button:hover,html[data-theme=light] .button:hover{background:#dce8ed}
+html[data-theme=light] button.primary,html[data-theme=light] .button.primary{color:#fff}
+html[data-theme=light] .matrix>div{background:#e5eff1;border-color:#839fa9}
+html[data-theme=light] .progression li>span{color:#226b61}
+html[data-theme=light] .verdict{background:#e0f1e9;color:#182c40}
+html[data-theme=light] .verdict.blocked{background:#fce7e3;color:#182c40}
+html[data-theme=light] .danger{background:#fce7e3;color:#92352a}
+.sidebar,.hero{--muted:#a9becb;--accent:#48d9c2;--text:#dce6ef}
+html[data-theme=light] .hero .badge{background:#163b36}
+.react-flow__node small{color:var(--muted)}
+.react-flow__edge-text{fill:var(--text)}.react-flow__edge-textbg{fill:var(--panel)}
+.flow .react-flow__handle{width:6px;height:6px;padding:0;background:var(--flow-edge);border-color:var(--panel)}
+
+html[data-theme=light]{--accent:#08685e}
+html[data-theme=light] .selected{background:#d8eee8!important;color:#17594f!important;border-color:#558b7f!important}
+html[data-theme=light] .selected small,html[data-theme=light] .selected p{color:#355e56}
+html[data-theme=light] pre.source .hljs-keyword,html[data-theme=light] pre.source .hljs-literal{color:#9b2342}
+html[data-theme=light] pre.source .hljs-string,html[data-theme=light] pre.source .hljs-regexp{color:#14517b}
+html[data-theme=light] pre.source .hljs-title,html[data-theme=light] pre.source .hljs-type{color:#64349a}
+html[data-theme=light] pre.source .hljs-built_in,html[data-theme=light] pre.source .hljs-number,html[data-theme=light] pre.source .hljs-attr{color:#85460a}
+html[data-theme=light] pre.source .hljs-comment{color:#526779}

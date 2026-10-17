@@ -18,7 +18,7 @@ class SemanticEncoder:
         self.tokenizer.enable_truncation(max_length=256)
         self.tokenizer.enable_padding(pad_id=0, pad_token="[PAD]")
         options = ort.SessionOptions()
-        options.intra_op_num_threads = 2
+        options.intra_op_num_threads = max(1, min(16, int(os.getenv("SEMANTIC_THREADS", "2"))))
         options.inter_op_num_threads = 1
         options.enable_cpu_mem_arena = False
         self.session = ort.InferenceSession(str(folder / "model.onnx"), sess_options=options, providers=["CPUExecutionProvider"])
@@ -38,4 +38,6 @@ class SemanticEncoder:
                 pooled = (hidden * mask).sum(axis=1) / np.maximum(mask.sum(axis=1), 1)
                 pooled /= np.maximum(np.linalg.norm(pooled, axis=1, keepdims=True), 1e-12)
                 vectors.append(pooled)
+                if show_progress_bar and (start == 0 or (start + len(batch)) % 1000 == 0 or start + len(batch) == len(prompts)):
+                    print(f"Semantic embeddings: {start + len(batch):,}/{len(prompts):,}", flush=True)
         return np.concatenate(vectors) if vectors else np.empty((0, 384), dtype=np.float32)

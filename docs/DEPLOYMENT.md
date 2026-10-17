@@ -60,3 +60,18 @@ The Meaning Expert uses the pinned official all-MiniLM-L6-v2 quantized ONNX enco
 The free service remains an inference host. Training runs on the PC or a separately configured batch worker. Local Windows memory measurements are not a guarantee of Linux hosting capacity; check Render memory and logs after deployment. No paid service is provisioned by these changes.
 
 Published comparison numbers are in the frontend comparison page only. They are literature context, never inserted into MongoDB as locally measured experiments.
+
+
+## Full-dataset research run
+
+From backend, use `python -m scripts.train --max-train 0 --max-eval 0 --semantic --studies --latency-samples 500 --dataset-csv "PATH_TO_IMPORTED_CSV"`.
+
+Zero limits mean all eligible rows in the existing partitions; they do not merge the partitions. The local CSV is accepted only if its SHA-256 matches MongoDB's imported-dataset metadata, and it uses the same canonical import mapping. This avoids repeated large Atlas downloads. Parent-group and normalized-text overlap is removed and checked before fitting. Classifiers fit training rows, meta-classifiers fit validation scores, and test labels are used only for evaluation.
+
+For the 300,000-row corpus the audited partitions contain 234,398 training, 33,461 validation and 32,141 test rows. The complete test partition is scored individually by each expert; these exact scores are reused for fusion comparisons. Real end-to-end latency is separately measured on a seeded 500-prompt sample for each ensemble variant. Individual-expert latency covers every test prompt. The UI displays classification and latency counts separately. Cached computation timings are never reported as real inference latency.
+
+`SEMANTIC_THREADS` controls ONNX CPU threads (default 2 for inference). The full local run uses 8 and records that setting in its manifest. Training-machine timings should not be presented as Render timings. Fitted experts and the fitted bundle are checkpointed under `backend/models/training_runs/<version>/` before evaluation, and each completed experiment is also written locally. These files remain Git-ignored.
+
+Promote and deploy only after reviewing the completed full-test report, inference memory checks and regression tests. Preserve the previous hmeg.joblib for rollback. Do not tune thresholds or select repeated candidates using the held-out test results.
+
+Interrupted full-data training can be resumed with the same command plus `--resume-run <run-id>`. The saved input identity must match the CSV checksum, split counts, limits, and semantic setting. Completed experts are reused; frozen Meaning embeddings are saved every 1,000 rows under `backend/models/embedding_cache`, keyed by ordered prompts and the encoder manifest. Keep these local checkpoints private and out of Git. An interrupted extraction can repeat at most its unfinished chunk.

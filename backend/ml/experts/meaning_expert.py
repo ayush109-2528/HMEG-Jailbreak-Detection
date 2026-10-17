@@ -19,7 +19,11 @@ class MeaningExpert(Expert):
     def fit(self, prompts, labels):
         from time import perf_counter
         start = perf_counter()
-        vectors = self.encoder().encode(list(prompts), show_progress_bar=False)
+        from app.config import settings
+        from .semantic_encoder import asset_dir
+        from ml.training_embeddings import cached_embeddings
+        vectors = cached_embeddings(self.encoder(), list(prompts),
+            settings.model_dir / 'embedding_cache', (asset_dir() / 'manifest.json').read_bytes())
         self.model.fit(vectors, list(labels))
         self.training_time = perf_counter() - start
         return self
