@@ -12,6 +12,7 @@ from fastapi.responses import JSONResponse
 from pymongo.errors import PyMongoError
 from app.config import settings
 from app.schemas import PredictionInput
+from app.prediction_policy import apply_prediction_policy
 from app.catalog import EXPERTS, code_topics
 from database.mongodb import Database
 from database.repositories import Repository
@@ -171,7 +172,7 @@ def predict(payload: PredictionInput, request: Request):
     if not slots.acquire(blocking=False):
         raise HTTPException(429, 'The inference workers are busy. Please retry shortly.')
     try:
-        result = model.engine.predict(payload.prompt)
+        result = apply_prediction_policy(payload.prompt, model.engine.predict(payload.prompt))
     except Exception:
         raise HTTPException(503, 'Model inference failed. Check artifact and dependency compatibility.')
     finally:

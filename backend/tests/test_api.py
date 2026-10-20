@@ -61,7 +61,7 @@ def test_pagination_bounds(client):
 
 def test_no_consent_means_no_storage(client):
     class Engine:
-        def predict(self, prompt): return {'label': 0}
+        def predict(self, prompt): return {'label': 0, 'prediction': 'benign', 'final_probability': .1, 'action': 'Allow prompt'}
     client.app.state.models.engine = Engine()
     response = client.post('/api/predict/hmeg', json={'prompt': 'test'})
     assert response.status_code == 200
@@ -71,7 +71,7 @@ def test_no_consent_means_no_storage(client):
 
 def test_public_consent_creates_readable_result(client):
     class Engine:
-        def predict(self, prompt): return {'label': 0}
+        def predict(self, prompt): return {'label': 0, 'prediction': 'benign', 'final_probability': .1, 'action': 'Allow prompt'}
     client.app.state.models.engine = Engine()
     response = client.post('/api/predict/hmeg', json={'prompt': 'test consent fixture', 'public_consent': True})
     assert response.json()['saved'] is True

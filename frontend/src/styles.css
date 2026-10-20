@@ -47,3 +47,9 @@ html[data-theme=light] pre.source .hljs-string,html[data-theme=light] pre.source
 html[data-theme=light] pre.source .hljs-title,html[data-theme=light] pre.source .hljs-type{color:#64349a}
 html[data-theme=light] pre.source .hljs-built_in,html[data-theme=light] pre.source .hljs-number,html[data-theme=light] pre.source .hljs-attr{color:#85460a}
 html[data-theme=light] pre.source .hljs-comment{color:#526779}
+
+/* Keep white primary-button text readable in every interactive state. */
+html[data-theme=light] button.primary:hover,html[data-theme=light] .button.primary:hover,
+html[data-theme=light] button.primary:focus-visible,html[data-theme=light] .button.primary:focus-visible{background:#075a51;color:#fff}
+.verdict.inconclusive{background:#302c20;color:#f1dfae;border-color:#a68b46}
+html[data-theme=light] .verdict.inconclusive{background:#fff3d6;color:#594313;border-color:#947532}
