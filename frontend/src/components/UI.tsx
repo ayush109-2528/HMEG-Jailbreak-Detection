@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Download, Info, RefreshCw } from 'lucide-react';
+import { ResearchLoading } from './ResearchLoading';
 import { download } from '../api/client';
 export const number = (n: unknown) => typeof n === 'number' ? n.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '—';
 export const percent = (n: unknown) => typeof n === 'number' ? `${(n * 100).toFixed(1)}%` : '—';
@@ -7,7 +8,7 @@ export function PageTitle({ eyebrow, title, children, action }: { eyebrow: strin
 export function Panel({ title, note, children, className = '' }: { title: string; note?: string; children: ReactNode; className?: string }) { return <section className={`panel ${className}`}><div className="panel-title"><h2>{title}</h2>{note && <span>{note}</span>}</div>{children}</section>; }
 export function Badge({ children, tone = '' }: { children: ReactNode; tone?: string }) { return <span className={`badge ${tone}`}>{children}</span>; }
 export function Empty({ children = 'No experimental data yet.' }: { children?: ReactNode }) { return <div className="empty"><Info size={22}/><p>{children}</p></div>; }
-export function State({ resource }: { resource: { error: string; loading: boolean; data: unknown; refresh: () => void } }) { return resource.error ? <div role="alert" className="notice danger">{resource.error}<button onClick={resource.refresh}><RefreshCw size={14}/> Retry</button></div> : resource.loading ? <div className="loading" role="status">{resource.data ? 'Updating results…' : 'Loading research data…'}</div> : null; }
+export function State({ resource }: { resource: { error: string; loading: boolean; data: unknown; refresh: () => void } }) { return resource.error ? <div role="alert" className="notice danger">{resource.error}<button onClick={resource.refresh}><RefreshCw size={14}/> Retry</button></div> : resource.loading ? <ResearchLoading compact={resource.data != null} title={resource.data != null ? 'Updating results…' : 'Loading research data…'}/> : null; }
 export function Export({ data, name }: { data: unknown; name: string }) { return <button disabled={!data} onClick={() => download(name + '.json', data)}><Download size={15}/> Export JSON</button>; }
 export function Stats({ values }: { values: [string, ReactNode, string?][] }) { return <div className="stats">{values.map(([label, value, hint]) => <div className="stat" key={label}><span>{label}</span><strong>{value}</strong>{hint && <small>{hint}</small>}</div>)}</div>; }
 export const glossary: Record<string, string> = {

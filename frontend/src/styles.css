@@ -53,3 +53,15 @@ html[data-theme=light] button.primary:hover,html[data-theme=light] .button.prima
 html[data-theme=light] button.primary:focus-visible,html[data-theme=light] .button.primary:focus-visible{background:#075a51;color:#fff}
 .verdict.inconclusive{background:#302c20;color:#f1dfae;border-color:#a68b46}
 html[data-theme=light] .verdict.inconclusive{background:#fff3d6;color:#594313;border-color:#947532}
+
+/* The signal moves while a real request is pending; no simulated percentage. */
+.research-loader{display:flex;align-items:center;gap:16px;margin:12px 0;padding:16px 18px;border:1px solid var(--border);border-inline-start:3px solid var(--accent);border-radius:12px;background:linear-gradient(110deg,color-mix(in srgb,var(--accent) 9%,var(--panel)),var(--panel) 75%);color:var(--text)}
+.research-loader strong,.research-loader small,.signal-note{display:block}
+.research-loader small{font-size:9px;letter-spacing:.16em;color:var(--muted);margin-bottom:4px}
+.research-loader strong{font-size:14px}.signal-note{color:var(--muted);font-size:12px;margin-top:4px}
+.signal-path{display:inline-flex;align-items:center;gap:5px;color:var(--accent);flex:none}
+.signal-path i{position:relative;width:29px;height:2px;background:var(--border)}
+.signal-path i:before{content:'';position:absolute;top:-2px;width:6px;height:6px;border-radius:50%;background:currentColor;animation:research-transfer 1.7s ease-in-out infinite}
+.research-loader.compact{padding:7px 12px;gap:10px;border:0;background:transparent}.compact .signal-path i{width:20px}
+@keyframes research-transfer{from{left:0;opacity:.45}to{left:calc(100% - 6px);opacity:1}}
+@media(prefers-reduced-motion:reduce){.signal-path i:before{animation:none;left:50%}}
