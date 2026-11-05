@@ -25,7 +25,7 @@ test('dataset pagination updates rows without document navigation',async({page})
   await expect(page.getByRole('dialog',{name:'Dataset record'})).toBeVisible();await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);
 });
 test('live HMEG predicts with actual execution records and clear resets',async({page})=>{
-  await page.goto('/live');await page.getByRole('button',{name:'Benign example',exact:true}).click();
+  await page.goto('/live');await page.getByRole('button',{name:'Random benign example',exact:true}).click();
   await page.getByRole('button',{name:'Analyze prompt',exact:true}).click();
   await expect(page.getByText('FINAL CLASSIFICATION',{exact:true})).toBeVisible();
   await expect(page.getByRole('heading',{name:'Execution trace',exact:true})).toBeVisible();
@@ -56,7 +56,7 @@ test('experiment tabs, details, and routing lookup',async({page})=>{
 });
 test('API error is actionable, not a fake result',async({page})=>{
   await page.route('**/api/predict/hmeg',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({detail:'Trained model unavailable for this regression fixture.'})}));
-  await page.goto('/live');await page.getByRole('button',{name:'Benign example',exact:true}).click();await page.getByRole('button',{name:'Analyze prompt',exact:true}).click();
+  await page.goto('/live');await page.getByRole('button',{name:'Random benign example',exact:true}).click();await page.getByRole('button',{name:'Analyze prompt',exact:true}).click();
   await expect(page.getByRole('alert')).toContainText('Trained model unavailable');await expect(page.getByText('FINAL CLASSIFICATION',{exact:true})).toHaveCount(0);
 });
 test('mobile dark layout and menu',async({page})=>{
