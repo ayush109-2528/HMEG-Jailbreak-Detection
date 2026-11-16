@@ -12,6 +12,8 @@ from fastapi.responses import JSONResponse
 from pymongo.errors import PyMongoError
 from app.config import settings
 from app.schemas import PredictionInput
+from ml.ensemble.hmeg import HMEG
+from ml.ensemble.router import Router
 from app.prediction_policy import apply_prediction_policy
 from app.catalog import EXPERTS, code_topics
 from database.mongodb import Database
@@ -172,7 +174,15 @@ def predict(payload: PredictionInput, request: Request):
     if not slots.acquire(blocking=False):
         raise HTTPException(429, 'The inference workers are busy. Please retry shortly.')
     try:
-        result = apply_prediction_policy(payload.prompt, model.engine.predict(payload.prompt))
+        engine = model.engine
+        experimental = payload.final_threshold is not None
+        if experimental:
+            # Request-local wrapper: shared fitted models and defaults are never mutated.
+            engine = HMEG(engine.experts, engine.meta,
+                          Router(payload.low_threshold, payload.high_threshold, engine.router.word_weight),
+                          payload.final_threshold, engine.version)
+        result = apply_prediction_policy(payload.prompt, engine.predict(payload.prompt))
+        result['experimental_thresholds'] = experimental
     except Exception:
         raise HTTPException(503, 'Model inference failed. Check artifact and dependency compatibility.')
     finally:

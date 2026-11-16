@@ -32,7 +32,7 @@ test('live HMEG predicts with actual execution records and clear resets',async({
   const health = await (await page.request.get('/api/health')).json();
   if (health.meaning_available) await expect(page.getByText('Reduced expert configuration:',{exact:false})).toHaveCount(0);
   else await expect(page.getByText('Reduced expert configuration:',{exact:false})).toBeVisible();
-  await expect(page.getByRole('checkbox')).not.toBeChecked();
+  await expect(page.getByRole('checkbox', {name: /Publish this prompt/})).not.toBeChecked();
   const audit=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa']).analyze();expect(audit.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))).toEqual([]);
   await page.screenshot({path:'test-output/dark-live-result.png'});
   await page.getByRole('button',{name:'Replay trace',exact:true}).click();

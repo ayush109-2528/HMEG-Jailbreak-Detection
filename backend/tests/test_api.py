@@ -91,3 +91,27 @@ def test_reproducibility_handles_linux_cpu_distribution(client, monkeypatch):
     response = client.get('/api/reproducibility')
     assert response.status_code == 200
     assert response.json()['versions']['xgboost'] == '3.4.1'
+
+@pytest.mark.parametrize('values', [
+    {'final_threshold': .9},
+    {'low_threshold': .8, 'high_threshold': .2, 'final_threshold': .5},
+    {'low_threshold': .2, 'high_threshold': .8, 'final_threshold': .9},
+    {'low_threshold': .2, 'high_threshold': 1, 'final_threshold': 1},
+])
+def test_invalid_experimental_thresholds(client, values):
+    assert client.post('/api/predict/hmeg', json={'prompt': 'test prompt', **values}).status_code == 422
+
+
+def test_experiment_does_not_mutate_default_engine(client):
+    from ml.ensemble.hmeg import HMEG, KEYS
+    from tests.test_core import StubExpert, StubMeta
+    engine = HMEG({key: StubExpert(.5) for key in KEYS}, StubMeta(KEYS))
+    client.app.state.models.engine = engine
+    custom = client.post('/api/predict/hmeg', json={
+        'prompt': 'test prompt', 'low_threshold': .1,
+        'high_threshold': .99, 'final_threshold': .9}).json()
+    default = client.post('/api/predict/hmeg', json={'prompt': 'test prompt'}).json()
+    assert custom['prediction'] == 'benign' and custom['experimental_thresholds']
+    assert default['prediction'] == 'jailbreak' and not default['experimental_thresholds']
+    assert custom['final_probability'] == default['final_probability'] == .7
+    assert engine.threshold == .5 and engine.router.low == .2 and engine.router.high == .8
