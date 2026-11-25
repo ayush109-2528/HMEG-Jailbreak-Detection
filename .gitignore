@@ -16,3 +16,11 @@ dataset/*.csv
 dataset/*.gz
 .vercel/
 test-output/
+
+# Public-corpus build outputs stay local; source manifests are reviewed separately.
+backend/data/*.csv
+backend/data/*.parquet
+backend/data/*.sqlite*
+backend/data/source_cards/
+backend/data/*.jsonl
+backend/data/*.ftz

@@ -5,3 +5,9 @@ models/*
 __pycache__
 .pytest_cache
 tests
+
+!models/source/
+models/source/*
+!models/source/hmeg.joblib
+data/
+results/

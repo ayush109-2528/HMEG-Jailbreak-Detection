@@ -9,6 +9,8 @@ COPY scripts ./scripts
 RUN useradd --create-home --uid 10001 hmeg && mkdir -p /models && chown hmeg /models
 # Package only the approved inference artifact for hosts without a persistent disk.
 COPY --chown=hmeg:hmeg models/hmeg.joblib /models/hmeg.joblib
+COPY --chown=hmeg:hmeg models/source/hmeg.joblib /models/source/hmeg.joblib
+ENV SOURCE_MODEL_DIR=/models/source
 ENV SEMANTIC_MODEL_DIR=/models/semantic
 RUN python -m scripts.download_semantic && chown -R hmeg:hmeg /models/semantic
 USER hmeg

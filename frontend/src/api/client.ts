@@ -1,6 +1,7 @@
 export const API = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+export function selectedProfile() { const shared=new URLSearchParams(window.location.search).get('track'); if(shared==='source'||shared==='synthetic')localStorage.setItem('hmeg-profile',shared); return localStorage.getItem('hmeg-profile') === 'source' ? 'source' : 'synthetic'; }
 export async function api<T = any>(path: string, options: RequestInit = {}): Promise<T> {
-  const response = await fetch(`${API}/api${path}`, options);
+  const response = await fetch(`${API}/api${path}${path.includes('?') ? '&' : '?'}profile=${selectedProfile()}`, options);
   const body = await response.json().catch(() => null);
   if (!response.ok) throw new Error(typeof body?.detail === 'string' ? body.detail : `Request failed (${response.status}). Check the API connection.`);
   return body;

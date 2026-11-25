@@ -19,6 +19,7 @@ from app.catalog import EXPERTS, code_topics
 from database.mongodb import Database
 from database.repositories import Repository
 from ml.utils.model_info import ModelStore
+from app.profiles import SourceTrack, CATALOG
 
 
 @asynccontextmanager
@@ -27,8 +28,10 @@ async def lifespan(app):
     app.state.repo = Repository(app.state.database)
     app.state.models = ModelStore(settings)
     app.state.model_mtime = artifact_mtime()
+    app.state.source_track = SourceTrack(settings)
     yield
     app.state.database.close()
+    app.state.source_track.close()
 
 
 def artifact_mtime():
@@ -44,6 +47,24 @@ rate_lock = Lock()
 visits = defaultdict(deque)
 
 
+@app.middleware('http')
+async def validate_profile(request, call_next):
+    if request.query_params.get('profile','synthetic') not in ('synthetic','source'):
+        return JSONResponse(status_code=400,content={'detail':'Unknown research track.'})
+    return await call_next(request)
+
+
+def repository(request):
+    if request.query_params.get('profile','synthetic')=='source':
+        return request.app.state.source_track.repository()
+    return request.app.state.repo
+
+
+@app.get('/api/profiles')
+def profiles(request: Request):
+    return [dict(row,configured=bool(request.app.state.source_track.config.mongo_uri) if row['id']=='source' else bool(settings.mongo_uri)) for row in CATALOG]
+
+
 @app.exception_handler(PyMongoError)
 @app.exception_handler(ConnectionError)
 def database_error(request, error):
@@ -51,6 +72,8 @@ def database_error(request, error):
 
 
 def store(request):
+    if request.query_params.get('profile','synthetic') == 'source':
+        return request.app.state.source_track.model()
     with reload_lock:
         stamp = artifact_mtime()
         if stamp != request.app.state.model_mtime:
@@ -61,12 +84,13 @@ def store(request):
 
 @app.get('/api/health')
 def health(request: Request):
-    return {'status': 'ok', 'database_connected': request.app.state.database.connected(), **store(request).status()}
+    db = request.app.state.source_track.database if request.query_params.get('profile')=='source' else request.app.state.database
+    return {'status': 'ok', 'profile':request.query_params.get('profile','synthetic'), 'database_connected': db.connected(), **store(request).status()}
 
 
 @app.get('/api/dataset/stats')
 def stats(request: Request):
-    return request.app.state.repo.stats()
+    return repository(request).stats()
 
 
 @app.get('/api/dataset/samples')
@@ -74,20 +98,22 @@ def samples(request: Request, page: int = Query(1, ge=1, le=100000), limit: int 
             search: str = Query('', max_length=200), label: int | None = Query(None, ge=0, le=1),
             source_dataset: str | None = None, attack_category: str | None = None, expert_focus: str | None = None,
             research_split: str | None = None, is_synthetic: bool | None = None, verification_status: str | None = None,
-            transformation: str | None = None):
-    return request.app.state.repo.samples(page, limit, search, label=label, source_dataset=source_dataset,
+            transformation: str | None = None, language: str | None = None,
+            is_short_prompt: bool | None = None, special_keyword: bool | None = None, attack_family: str | None = None):
+    return repository(request).samples(page, limit, search, label=label, source_dataset=source_dataset,
         attack_category=attack_category, expert_focus=expert_focus, research_split=research_split,
-        is_synthetic=is_synthetic, verification_status=verification_status, transformation=transformation)
+        is_synthetic=is_synthetic, verification_status=verification_status, transformation=transformation,
+        language=language, is_short_prompt=is_short_prompt, special_keyword=special_keyword, attack_family=attack_family)
 
 
 @app.get('/api/dataset/sources')
 def sources(request: Request):
-    return request.app.state.repo.sources()
+    return repository(request).sources()
 
 
 @app.get('/api/database/stats')
 def database_stats(request: Request):
-    return request.app.state.repo.database_stats()
+    return repository(request).database_stats()
 
 
 @app.get('/api/experts')
@@ -98,12 +124,12 @@ def experts(request: Request):
 
 @app.get('/api/experiments')
 def experiments(request: Request, model_type: str | None = None, search: str = Query('', max_length=200)):
-    return request.app.state.repo.experiments(model_type, search)
+    return repository(request).experiments(model_type, search)
 
 
 @app.get('/api/experiments/{identifier}')
 def experiment(identifier: str, request: Request):
-    row = request.app.state.repo.experiment(identifier)
+    row = repository(request).experiment(identifier)
     if not row:
         raise HTTPException(404, 'Experiment not found')
     return row
@@ -115,8 +141,11 @@ def code():
 
 
 @app.get('/api/routing/config')
-def routing():
-    return {'low': settings.low, 'high': settings.high, 'final_threshold': settings.threshold, 'note': 'Operator-configured, tunable experimental thresholds.'}
+def routing(request: Request):
+    engine = store(request).engine
+    return {'low': engine.router.low if engine else settings.low, 'high': engine.router.high if engine else settings.high,
+            'final_threshold': engine.threshold if engine else settings.threshold,
+            'note': 'Active model defaults; request-local experimental thresholds do not change these defaults.'}
 
 
 def installed_version(package):
@@ -134,10 +163,10 @@ def installed_version(package):
 def reproducibility(request: Request):
     model = store(request)
     try:
-        dataset = request.app.state.repo.metadata('dataset')
+        dataset = repository(request).metadata('dataset')
     except (ConnectionError, PyMongoError):
         dataset = None
-    return {'dataset': dataset, 'model': model.status(), 'routing': routing(), 'random_seed': 42,
+    return {'dataset': dataset, 'model': model.status(), 'routing': routing(request), 'random_seed': 42,
         'git_commit': os.getenv('GIT_COMMIT') or None, 'python': platform.python_version(),
         'versions': {package: installed_version(package) for package in ['scikit-learn', 'numpy', 'pandas', 'xgboost', 'pymongo', 'fastapi', 'onnxruntime', 'tokenizers']},
         'training': model.bundle.get('training') if model.bundle else None}
@@ -145,12 +174,12 @@ def reproducibility(request: Request):
 
 @app.get('/api/live-tests')
 def live_tests(request: Request):
-    return request.app.state.repo.public_tests()
+    return repository(request).public_tests()
 
 
 @app.get('/api/live-tests/{identifier}')
 def live_test(identifier: str, request: Request):
-    row = request.app.state.repo.public_test(identifier)
+    row = repository(request).public_test(identifier)
     if not row:
         raise HTTPException(404, 'Public result not found')
     return row
@@ -180,17 +209,19 @@ def predict(payload: PredictionInput, request: Request):
             # Request-local wrapper: shared fitted models and defaults are never mutated.
             engine = HMEG(engine.experts, engine.meta,
                           Router(payload.low_threshold, payload.high_threshold, engine.router.word_weight),
-                          payload.final_threshold, engine.version)
+                          payload.final_threshold, engine.version, preserve_format=getattr(engine, 'preserve_format', False))
         result = apply_prediction_policy(payload.prompt, engine.predict(payload.prompt))
         result['experimental_thresholds'] = experimental
+        result['dataset_version'] = (model.bundle or {}).get('training', {}).get('dataset_version')
     except Exception:
         raise HTTPException(503, 'Model inference failed. Check artifact and dependency compatibility.')
     finally:
         slots.release()
+    result['research_profile'] = request.query_params.get('profile','synthetic')
     result['saved'] = False
     if payload.public_consent:
         try:
-            result['result_id'] = request.app.state.repo.save_public_test(payload.prompt, dict(result))
+            result['result_id'] = repository(request).save_public_test(payload.prompt, dict(result))
             result['saved'] = True
         except (ConnectionError, PyMongoError):
             result['storage_warning'] = 'Prediction succeeded, but public sharing could not be saved.'

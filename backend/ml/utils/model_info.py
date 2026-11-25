@@ -25,8 +25,9 @@ class ModelStore:
                         raise ValueError('Semantic assets differ from training')
                 bundle['experts']['meaning'].encoder()
             meta = bundle['metas'][bundle['preferred_meta']]
-            self.engine = HMEG(bundle['experts'], meta, Router(config.low, config.high),
-                               config.threshold, bundle['version'])
+            routing = bundle.get('routing_thresholds') or {'low': config.low, 'high': config.high, 'final': config.threshold}
+            self.engine = HMEG(bundle['experts'], meta, Router(routing['low'], routing['high']),
+                               routing['final'], bundle['version'], preserve_format=bundle.get('preserve_format', False))
             self.bundle = bundle
         except Exception:
             self.error = 'Model artifacts or optional encoder unavailable. Check the trusted model bundle and installed dependencies.'

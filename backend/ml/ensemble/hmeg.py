@@ -9,8 +9,9 @@ KEYS = ('word', 'format', 'meaning', 'pattern', 'instruction')
 
 
 class HMEG:
-    def __init__(self, experts, meta, router=None, threshold=.5, version='unversioned'):
+    def __init__(self, experts, meta, router=None, threshold=.5, version='unversioned', *, preserve_format=False):
         self.experts, self.meta = experts, meta
+        self.preserve_format = preserve_format
         self.router = router or Router()
         self.threshold, self.version = threshold, version
 
@@ -18,7 +19,7 @@ class HMEG:
         started = perf_counter()
         trace = [{'stage': 'Prompt received', 'at_ms': 0.0, 'key': 'input'}]
         mark = lambda stage, key: trace.append({'stage': stage, 'key': key, 'at_ms': (perf_counter() - started) * 1000})
-        text = preprocess(prompt)
+        text = prompt if self.preserve_format else preprocess(prompt)
         mark('Preprocessing complete', 'preprocessing')
         scores, records = {}, {}
 
@@ -48,7 +49,7 @@ class HMEG:
             else:
                 records[key] = dict(executed=False, status='skipped', score=None, latency_ms=None, details={})
         if deeper:
-            final = fuse(scores, fusion, self.meta)
+            final = fuse(scores, fusion, self.meta, prompt_length=len(prompt))
             label = int(final >= self.threshold)
             mark('Meta classifier complete' if fusion.startswith('meta_') else 'Flat fusion complete', 'meta')
         else:

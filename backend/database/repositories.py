@@ -32,7 +32,8 @@ class Repository:
             facets = {key: [{'$group': {'_id': '$' + field, 'value': {'$sum': 1}}},
                             {'$sort': {'value': -1}}] for key, field in
                       [('labels', 'l'), ('sources', 'src'), ('categories', 'ac'), ('expert_focus', 'ef'),
-                       ('splits', 'split'), ('synthetic', 'syn'), ('verification', 'ver')]}
+                       ('splits', 'split'), ('synthetic', 'syn'), ('verification', 'ver'),
+                       ('languages', 'lang'), ('short_prompts', 'short'), ('keywords', 'kw'), ('attack_families', 'af')]}
             result = list(self.db.dataset_samples.aggregate([{'$facet': facets}], maxTimeMS=15000))[0]
             groups = {key: [{'name': item['_id'], 'value': item['value']} for item in rows]
                       for key, rows in result.items()}
@@ -40,6 +41,9 @@ class Repository:
             self._cached = dict(total=sum(x['value'] for x in groups['labels']), benign=count('labels', 0),
                                 jailbreak=count('labels', 1), real=count('synthetic', False),
                                 synthetic=count('synthetic', True), distributions=groups,
+                                english=count('languages', 'en'), hindi=count('languages', 'hi'),
+                                language_recorded=count('languages', 'en')+count('languages', 'hi'),
+                                short_prompts=count('short_prompts', True), special_keyword_prompts=count('keywords', True),
                                 quality=self.metadata('data_quality'), dataset=self.metadata('dataset'))
             self._expires = time.monotonic() + 60
             return self._cached

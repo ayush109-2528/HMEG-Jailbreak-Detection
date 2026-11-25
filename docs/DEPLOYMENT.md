@@ -1,3 +1,5 @@
+> For the current two-database/two-model setup, follow [DUAL_TRACK_DEPLOYMENT.md](DUAL_TRACK_DEPLOYMENT.md). The worker examples below describe the older original-track workflow; do not publish a new training run just to demonstrate the site.
+
 # Deployment: Vercel frontend + Python API/worker + MongoDB Atlas
 
 The source is prepared; a hosting account/service and public API URL still need to be configured. No new paid hosting was purchased or provisioned.

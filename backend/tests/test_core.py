@@ -90,3 +90,32 @@ def test_metrics_confusion_matrix_and_undefined_auc():
     assert result['metrics']['fpr'] == .5
     assert result['metrics']['fnr'] == .5
     assert summarize([0, 0], [0, 0], [.1, .2], [1, 2])['metrics']['roc_auc'] is None
+
+
+class RecordingExpert(StubExpert):
+    def score(self, prompt):
+        self.last_prompt = prompt
+        return super().score(prompt)
+
+
+def test_new_models_preserve_format_without_changing_legacy_defaults():
+    prompt = '  Example\ttext.\n'
+    experts = {key: RecordingExpert(.1) for key in KEYS}
+    HMEG(experts, StubMeta(KEYS), preserve_format=True).predict(prompt)
+    assert all(expert.last_prompt == prompt for expert in experts.values() if expert.calls)
+    HMEG(experts, StubMeta(KEYS)).predict(prompt)
+    assert experts['format'].last_prompt == prompt.strip()
+
+
+def test_candidate_bundle_loads_recorded_routing_and_format_policy(tmp_path):
+    import joblib
+    experts = {'word': RecordingExpert(.1), 'format': RecordingExpert(.1)}
+    joblib.dump({'experts':experts,'metas':{'logistic':StubMeta(experts)},
+                'preferred_meta':'logistic','version':'test-fixture',
+                'routing_thresholds':{'low':.1,'high':.9,'final':.5},
+                'preserve_format':True}, tmp_path/'hmeg.joblib')
+    config = SimpleNamespace(model_dir=tmp_path,low=.2,high=.8,threshold=.5)
+    model = ModelStore(config)
+    assert model.engine is not None
+    assert model.engine.router.low == .1 and model.engine.router.high == .9
+    assert model.engine.preserve_format is True

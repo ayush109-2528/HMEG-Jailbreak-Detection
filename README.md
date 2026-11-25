@@ -94,3 +94,7 @@ This academic prototype is not a certified safety boundary. It measures a detect
 ## Latest verification
 
 See [regression and visual QA report](docs/QA-2026-10-16.md) for passed tests, screenshots, moved files, and deployment limitations.
+
+## Two dataset/model tracks (25 November 2026)
+
+The Research track selector keeps synthetic and sourced datasets, results, and inference separate. See [two-track setup and verification](docs/DUAL_TRACK_DEPLOYMENT.md) before deploying. Both trained artifacts exist; the sourced model is a research candidate, not an approved accuracy improvement. No deployment was performed.
