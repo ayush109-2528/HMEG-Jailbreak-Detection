@@ -1,0 +1,102 @@
+[
+  {
+    "paper_id": "llama-guard",
+    "year": 2023,
+    "title": "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations"
+  },
+  {
+    "paper_id": "perplexity-attacks",
+    "year": 2023,
+    "title": "Detecting Language Model Attacks with Perplexity"
+  },
+  {
+    "paper_id": "building-guardrails",
+    "year": 2024,
+    "title": "Building Guardrails for Large Language Models"
+  },
+  {
+    "paper_id": "embedding-classifiers",
+    "year": 2024,
+    "title": "Embedding-based classifiers can detect prompt injection attacks"
+  },
+  {
+    "paper_id": "rigorllm",
+    "year": 2024,
+    "title": "RigorLLM: Resilient Guardrails for Large Language Models against Undesired Content"
+  },
+  {
+    "paper_id": "smoothllm",
+    "year": 2024,
+    "title": "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks"
+  },
+  {
+    "paper_id": "wildguard",
+    "year": 2024,
+    "title": "WildGuard: Open One-stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs"
+  },
+  {
+    "paper_id": "archias",
+    "year": 2025,
+    "title": "Improving LLM Outputs Against Jailbreak Attacks With Expert Model Integration"
+  },
+  {
+    "paper_id": "bipia",
+    "year": 2025,
+    "title": "Benchmarking and Defending Against Indirect Prompt Injection Attacks on Large Language Models"
+  },
+  {
+    "paper_id": "dangerous-effects",
+    "year": 2025,
+    "title": "The Dangerous Effects of a Frustratingly Easy LLMs Jailbreak Attack"
+  },
+  {
+    "paper_id": "free-jailbreak-detection",
+    "year": 2025,
+    "title": "LLM Jailbreak Detection for (Almost) Free!"
+  },
+  {
+    "paper_id": "jailbreaktracer",
+    "year": 2025,
+    "title": "JailbreakTracer: Explainable Detection of Jailbreaking Prompts in LLMs Using Synthetic Data Generation"
+  },
+  {
+    "paper_id": "multi-agent-nlp",
+    "year": 2025,
+    "title": "Prompt Injection Detection and Mitigation via AI Multi-Agent NLP Frameworks"
+  },
+  {
+    "paper_id": "pd-mas",
+    "year": 2025,
+    "title": "A Hybrid Perplexity-MAS Framework for Proactive Jailbreak Attack Detection in Large Language Models"
+  },
+  {
+    "paper_id": "sok-guardrails",
+    "year": 2025,
+    "title": "SoK: Evaluating Jailbreak Guardrails for Large Language Models"
+  },
+  {
+    "paper_id": "comparative-ml-injection",
+    "year": 2026,
+    "title": "Comparative evaluation of machine learning methods for protecting LLMs from prompt injection attacks"
+  },
+  {
+    "paper_id": "dualbreach-eguard",
+    "year": 2026,
+    "title": "DUALBREACH: Efficient Dual-Jailbreaking via Target-Driven Initialization and Multi-Target Optimization"
+  },
+  {
+    "paper_id": "guardnet",
+    "year": 2026,
+    "title": "GuardNet: Ensemble Strategies of Shallow Neural Networks for Robust Prompt Injection and Jailbreak Detection"
+  },
+  {
+    "paper_id": "indian-injection",
+    "year": 2026,
+    "title": "Detection and analysis of prompt injection in indian multilingual large language models"
+  },
+  {
+    "paper_id": "regime-dependent",
+    "year": 2026,
+    "title": "Prompt Injection Detection is Regime-Dependent: A Deployment-Aware Evaluation with Interpretable Structural Signals"
+  }
+]

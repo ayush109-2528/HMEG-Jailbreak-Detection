@@ -1,0 +1,181 @@
+[
+  {
+    "paper_id": "archias",
+    "components": [
+      "meaning",
+      "instruction",
+      "meta"
+    ],
+    "interpretation": "Motivates specialized intent signals before an LLM. HMEG combines five experts for classification rather than injecting one expert’s outputs into generation."
+  },
+  {
+    "paper_id": "bipia",
+    "components": [
+      "instruction",
+      "evaluation"
+    ],
+    "interpretation": "Evaluate HMEG instruction-manipulation signals with explicit trusted/untrusted context and report the limits of isolated-prompt classification."
+  },
+  {
+    "paper_id": "building-guardrails",
+    "components": [
+      "evaluation",
+      "meta"
+    ],
+    "interpretation": "Motivates explicit scope, transparent limitations and tests that examine security and usability together."
+  },
+  {
+    "paper_id": "comparative-ml-injection",
+    "components": [
+      "word",
+      "meaning",
+      "evaluation"
+    ],
+    "interpretation": "Compare HMEG against reproducible single-detector baselines and test source-held-out data rather than assuming benchmark transfer."
+  },
+  {
+    "paper_id": "dangerous-effects",
+    "components": [
+      "meaning",
+      "instruction",
+      "evaluation"
+    ],
+    "interpretation": "Motivates intent-sensitive detection and end-to-end evaluation; a prompt classifier alone cannot prove downstream model safety."
+  },
+  {
+    "paper_id": "dualbreach-eguard",
+    "components": [
+      "meta",
+      "evaluation"
+    ],
+    "interpretation": "Evaluate the robustness of HMEG fusion against held-out attack mechanisms; distinguish this from a claim to reproduce EGUARD."
+  },
+  {
+    "paper_id": "embedding-classifiers",
+    "components": [
+      "meaning",
+      "evaluation"
+    ],
+    "interpretation": "Direct methodological support for a frozen embedding model followed by a classifier. HMEG treats this as one expert, not the entire decision system."
+  },
+  {
+    "paper_id": "free-jailbreak-detection",
+    "components": [
+      "router",
+      "evaluation"
+    ],
+    "interpretation": "Evaluate calibration and efficiency explicitly while keeping HMEG independent of target-LLM logits."
+  },
+  {
+    "paper_id": "guardnet",
+    "components": [
+      "word",
+      "meta",
+      "router",
+      "evaluation"
+    ],
+    "interpretation": "Compare HMEG against flat fusion under a genuinely held-out protocol, and select thresholds only on validation data."
+  },
+  {
+    "paper_id": "indian-injection",
+    "components": [
+      "word",
+      "format",
+      "meaning",
+      "instruction"
+    ],
+    "interpretation": "Feature engineering and complementary rule/model signals can inform English-only experiments. No multilingual capability is claimed for HMEG."
+  },
+  {
+    "paper_id": "jailbreaktracer",
+    "components": [
+      "meaning",
+      "evaluation"
+    ],
+    "interpretation": "Motivates clear augmentation provenance and explainability checks. HMEG must separately test false positives on unseen English data."
+  },
+  {
+    "paper_id": "llama-guard",
+    "components": [
+      "meaning",
+      "evaluation"
+    ],
+    "interpretation": "Provides an LLM-based comparison and motivates separating harmful-content classification from jailbreak-specific evaluation."
+  },
+  {
+    "paper_id": "multi-agent-nlp",
+    "components": [
+      "instruction",
+      "meta",
+      "evaluation"
+    ],
+    "interpretation": "Use complementary expert responsibilities while measuring whether extra stages justify their latency."
+  },
+  {
+    "paper_id": "pd-mas",
+    "components": [
+      "pattern",
+      "router",
+      "meta",
+      "evaluation"
+    ],
+    "interpretation": "Motivates testing staged computation and complementary evidence. HMEG uses learned expert classifiers; it does not reproduce this multi-agent framework."
+  },
+  {
+    "paper_id": "perplexity-attacks",
+    "components": [
+      "pattern",
+      "format",
+      "router",
+      "evaluation"
+    ],
+    "interpretation": "Combine structural evidence with other HMEG experts and audit short-prompt false positives separately."
+  },
+  {
+    "paper_id": "regime-dependent",
+    "components": [
+      "word",
+      "pattern",
+      "instruction",
+      "router",
+      "meta",
+      "evaluation"
+    ],
+    "interpretation": "Motivates separate English OOD evaluation, frozen threshold selection and false-positive analysis. Similar signals do not prove HMEG’s router is effective."
+  },
+  {
+    "paper_id": "rigorllm",
+    "components": [
+      "meaning",
+      "meta",
+      "evaluation"
+    ],
+    "interpretation": "Test whether heterogeneous expert fusion improves HMEG robustness without the runtime cost of a multi-LLM guardrail."
+  },
+  {
+    "paper_id": "smoothllm",
+    "components": [
+      "format",
+      "meta",
+      "evaluation"
+    ],
+    "interpretation": "Measure HMEG robustness to character obfuscation without equating unusual formatting with malicious intent."
+  },
+  {
+    "paper_id": "sok-guardrails",
+    "components": [
+      "evaluation",
+      "router"
+    ],
+    "interpretation": "Measure HMEG false positives, routing cost and generalization within one controlled protocol."
+  },
+  {
+    "paper_id": "wildguard",
+    "components": [
+      "meaning",
+      "instruction",
+      "evaluation"
+    ],
+    "interpretation": "Keep HMEG jailbreak labels distinct from harmful-topic and refusal labels, and audit coverage of benign prompts."
+  }
+]

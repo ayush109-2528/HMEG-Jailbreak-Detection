@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "scope": "English-language HMEG detection. External language capabilities remain outside scope.",
+  "unique_papers": 20,
+  "source_pdf_inventory_count": 20,
+  "readable_pdf_sources": 20,
+  "damaged_originals_recovered": 1,
+  "missing_sources": [
+    {
+      "title": "Embedding-Based Detection of Indirect Prompt Injection Attacks in Large Language Models Using Semantic Context Analysis",
+      "url": "https://www.mdpi.com/1999-4893/19/1/92",
+      "reason": "Publisher page returned HTTP 403 during retrieval; full text not verified. Awaiting a supplied PDF."
+    },
+    {
+      "title": "Prompt Injection Detection in LLM Integrated Applications",
+      "url": "https://journal.hep.com.cn/ijndi/EN/PDF/10.53941/ijndi.2025.100013",
+      "reason": "Publisher PDF retrieval failed; full text not verified. Awaiting a supplied PDF."
+    },
+    {
+      "title": "Adversarial Prompt Detection in Large Language Models: A Classification-Driven Approach",
+      "url": "https://www.sciopen.com/article/10.32604/cmc.2025.063826",
+      "reason": "Publisher page returned HTTP 403 during retrieval; full text not verified. Awaiting a supplied PDF."
+    }
+  ],
+  "duplicate_records_removed": 0,
+  "duplicates": [],
+  "exclusions": [],
+  "categories": [
+    "attacks",
+    "classical",
+    "ensemble",
+    "evaluation",
+    "llm",
+    "multilingual",
+    "semantic",
+    "structural"
+  ],
+  "relationships": {
+    "citation": 3,
+    "relevance": 20,
+    "similarity": 31
+  },
+  "component_connections": 59,
+  "methodology_diagrams": 20,
+  "public_pdfs": 6,
+  "abstracts_republished": 6,
+  "original_figure_or_table_pages": 2,
+  "graph_configuration": {
+    "layout": "Deterministic d3-force initial coordinates; equal-size paper nodes",
+    "similarity": "At least two exact shared curated method tags",
+    "similarity_min_shared_tags": 2,
+    "similarity_percentages": false,
+    "citations": "Explicit verified bibliographic reference plus source page only"
+  },
+  "source_notes": [
+    "Combined PDFs are inspected for individual paper boundaries; extraction only suggests locations for manual review.",
+    "Dates and claims refer to identified source versions. No citation counts are estimated.",
+    "Restricted or unverified-license PDFs are not publicly redistributed. The device-local reader does not upload files."
+  ]
+}

@@ -1,0 +1,23 @@
+import {useEffect,useState,useMemo,useRef} from 'react';
+import {ReactFlow,Background,Controls,Handle,Position,MarkerType,useNodesState,useReactFlow,ReactFlowProvider} from '@xyflow/react';
+import {forceSimulation,forceLink,forceManyBody,forceCollide,forceX,forceY} from 'd3-force';
+import '@xyflow/react/dist/style.css';
+import {Paper,Relationship,colors} from './types';
+function PaperNode({data}:any){return <div className={'research-node '+(data.central?'central':'')} title={data.preview} style={{borderColor:data.color}}><Handle type="target" position={Position.Left}/><span className="node-kicker" style={{color:data.color}}>{data.central?'PROPOSED FRAMEWORK':data.year||'Year unspecified'}</span><strong>{data.label}</strong><small>{data.central?'English prompts · five experts':data.author}</small><Handle type="source" position={Position.Right}/></div>}
+const nodeTypes={paper:PaperNode};
+type Props={papers:Paper[];relationships:Relationship[];selected:string;onSelect:(id:string)=>void;colorBy:string;highlight:string[]};
+function Graph(props:Props){const {papers,relationships,selected,onSelect,colorBy,highlight}=props;const [nodes,setNodes,onNodesChange]=useNodesState<any>([]);const [reset,setReset]=useState(0);const [hover,setHover]=useState<Paper|null>(null);const flow=useReactFlow();const container=useRef<HTMLDivElement>(null);
+ useEffect(()=>{let timer:ReturnType<typeof setTimeout>;const observer=new ResizeObserver(()=>{clearTimeout(timer);timer=setTimeout(()=>flow.fitView({padding:.18,duration:0}),100)});if(container.current)observer.observe(container.current);return()=>{observer.disconnect();clearTimeout(timer)}},[flow]);
+ const visible=useMemo(()=>new Set(['hmeg',...papers.map(p=>p.id)]),[papers]);
+ const links=useMemo(()=>relationships.filter(e=>visible.has(e.source)&&visible.has(e.target)),[relationships,visible]);
+ const connected=new Set([selected,...links.filter(e=>e.source===selected||e.target===selected).flatMap(e=>[e.source,e.target])]);
+ useEffect(()=>{const ids=['hmeg',...papers.map(p=>p.id).sort()];const simNodes:any[]=ids.map((id,i)=>({id,x:i?Math.cos(i*2.399)*500:0,y:i?Math.sin(i*2.399)*500:0,...(i===0?{fx:0,fy:0}:{})}));
+  const sim=forceSimulation(simNodes).force('link',forceLink(links.map(e=>({source:e.source,target:e.target}))).id((d:any)=>d.id).distance(340).strength(.12)).force('charge',forceManyBody().strength(-700)).force('collision',forceCollide(130)).force('x',forceX(0).strength(.025)).force('y',forceY(0).strength(.025)).stop();
+  for(let i=0;i<260;i++)sim.tick();
+  setNodes(simNodes.map(n=>({id:n.id,type:'paper',position:{x:n.x-90,y:n.y-40},data:{},style:{width:180}})));sim.stop();const t=setTimeout(()=>flow.fitView({padding:.18,duration:window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:400}),80);return()=>clearTimeout(t);
+ },[papers,links,reset,setNodes,flow]);
+ const display=nodes.map(n=>{const p=papers.find(p=>p.id===n.id);return {...n,selected:n.id===selected,style:{...n.style,opacity:highlight.length?(highlight.includes(n.id)||n.id==='hmeg'?1:.2):selected==='hmeg'||connected.has(n.id)?1:.22},data:{central:!p,label:p?.shortTitle||'HMEG · My Proposed Research',author:p?`${p.authors[0]||'Author unspecified'}${p.authors.length>1?' et al.':''}`:'',year:p?.year,preview:p?.summary,color:p?(colorBy==='year'?`hsl(${180+((p.year||2023)-2023)*28}, 55%, 58%)`:colors[p.category]):'var(--accent)'}}});
+ const edges=links.map(e=>({...e,markerEnd:e.type==='citation'?{type:MarkerType.ArrowClosed,color:'var(--flow-edge)'}:undefined,style:{stroke:'var(--flow-edge)',strokeWidth:e.source===selected||e.target===selected?2:1,strokeDasharray:e.type==='relevance'?'6 5':undefined,opacity:selected==='hmeg'||e.source===selected||e.target===selected?1:.28},data:{reason:e.reason}}));
+ return <div ref={container} className="research-graph" aria-label="Interactive research graph"><ReactFlow nodes={display} edges={edges} nodeTypes={nodeTypes} onNodesChange={onNodesChange} onNodeClick={(_,n)=>onSelect(n.id)} onNodeMouseEnter={(_,n)=>setHover(papers.find(p=>p.id===n.id)||null)} onNodeMouseLeave={()=>setHover(null)} onEdgeClick={(_,e)=>window.dispatchEvent(new CustomEvent('research-edge',{detail:e.data?.reason}))} nodesConnectable={false} minZoom={.15} maxZoom={2} fitView><Background color="var(--border)" gap={30}/><Controls showInteractive={false}/></ReactFlow>{hover&&<div className="graph-hover" role="tooltip"><b>{hover.shortTitle}</b><small>{hover.authors[0]} · {hover.year}</small><p>{hover.objective}</p></div>}<button className="graph-reset" onClick={()=>setReset(x=>x+1)}>Reset layout</button></div>
+}
+export default function ResearchGraph(props:Props){return <ReactFlowProvider><Graph {...props}/></ReactFlowProvider>}

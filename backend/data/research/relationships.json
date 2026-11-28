@@ -1,0 +1,389 @@
+[
+  {
+    "id": "citation-dangerous-effects-llama-guard",
+    "source": "dangerous-effects",
+    "target": "llama-guard",
+    "type": "citation",
+    "reason": "Explicit bibliographic reference in Dangerous effects of jailbreaks, PDF page 13.",
+    "pages": [
+      13
+    ]
+  },
+  {
+    "id": "citation-free-jailbreak-detection-perplexity-attacks",
+    "source": "free-jailbreak-detection",
+    "target": "perplexity-attacks",
+    "type": "citation",
+    "reason": "Explicit bibliographic reference in Free Jailbreak Detection, PDF page 9.",
+    "pages": [
+      9
+    ]
+  },
+  {
+    "id": "citation-jailbreaktracer-llama-guard",
+    "source": "jailbreaktracer",
+    "target": "llama-guard",
+    "type": "citation",
+    "reason": "Explicit bibliographic reference in JailbreakTracer, PDF page 15.",
+    "pages": [
+      15
+    ]
+  },
+  {
+    "id": "relevance-archias",
+    "source": "hmeg",
+    "target": "archias",
+    "type": "relevance",
+    "reason": "Motivates specialized intent signals before an LLM. HMEG combines five experts for classification rather than injecting one expert’s outputs into generation."
+  },
+  {
+    "id": "relevance-bipia",
+    "source": "hmeg",
+    "target": "bipia",
+    "type": "relevance",
+    "reason": "Evaluate HMEG instruction-manipulation signals with explicit trusted/untrusted context and report the limits of isolated-prompt classification."
+  },
+  {
+    "id": "relevance-building-guardrails",
+    "source": "hmeg",
+    "target": "building-guardrails",
+    "type": "relevance",
+    "reason": "Motivates explicit scope, transparent limitations and tests that examine security and usability together."
+  },
+  {
+    "id": "relevance-comparative-ml-injection",
+    "source": "hmeg",
+    "target": "comparative-ml-injection",
+    "type": "relevance",
+    "reason": "Compare HMEG against reproducible single-detector baselines and test source-held-out data rather than assuming benchmark transfer."
+  },
+  {
+    "id": "relevance-dangerous-effects",
+    "source": "hmeg",
+    "target": "dangerous-effects",
+    "type": "relevance",
+    "reason": "Motivates intent-sensitive detection and end-to-end evaluation; a prompt classifier alone cannot prove downstream model safety."
+  },
+  {
+    "id": "relevance-dualbreach-eguard",
+    "source": "hmeg",
+    "target": "dualbreach-eguard",
+    "type": "relevance",
+    "reason": "Evaluate the robustness of HMEG fusion against held-out attack mechanisms; distinguish this from a claim to reproduce EGUARD."
+  },
+  {
+    "id": "relevance-embedding-classifiers",
+    "source": "hmeg",
+    "target": "embedding-classifiers",
+    "type": "relevance",
+    "reason": "Direct methodological support for a frozen embedding model followed by a classifier. HMEG treats this as one expert, not the entire decision system."
+  },
+  {
+    "id": "relevance-free-jailbreak-detection",
+    "source": "hmeg",
+    "target": "free-jailbreak-detection",
+    "type": "relevance",
+    "reason": "Evaluate calibration and efficiency explicitly while keeping HMEG independent of target-LLM logits."
+  },
+  {
+    "id": "relevance-guardnet",
+    "source": "hmeg",
+    "target": "guardnet",
+    "type": "relevance",
+    "reason": "Compare HMEG against flat fusion under a genuinely held-out protocol, and select thresholds only on validation data."
+  },
+  {
+    "id": "relevance-indian-injection",
+    "source": "hmeg",
+    "target": "indian-injection",
+    "type": "relevance",
+    "reason": "Feature engineering and complementary rule/model signals can inform English-only experiments. No multilingual capability is claimed for HMEG."
+  },
+  {
+    "id": "relevance-jailbreaktracer",
+    "source": "hmeg",
+    "target": "jailbreaktracer",
+    "type": "relevance",
+    "reason": "Motivates clear augmentation provenance and explainability checks. HMEG must separately test false positives on unseen English data."
+  },
+  {
+    "id": "relevance-llama-guard",
+    "source": "hmeg",
+    "target": "llama-guard",
+    "type": "relevance",
+    "reason": "Provides an LLM-based comparison and motivates separating harmful-content classification from jailbreak-specific evaluation."
+  },
+  {
+    "id": "relevance-multi-agent-nlp",
+    "source": "hmeg",
+    "target": "multi-agent-nlp",
+    "type": "relevance",
+    "reason": "Use complementary expert responsibilities while measuring whether extra stages justify their latency."
+  },
+  {
+    "id": "relevance-pd-mas",
+    "source": "hmeg",
+    "target": "pd-mas",
+    "type": "relevance",
+    "reason": "Motivates testing staged computation and complementary evidence. HMEG uses learned expert classifiers; it does not reproduce this multi-agent framework."
+  },
+  {
+    "id": "relevance-perplexity-attacks",
+    "source": "hmeg",
+    "target": "perplexity-attacks",
+    "type": "relevance",
+    "reason": "Combine structural evidence with other HMEG experts and audit short-prompt false positives separately."
+  },
+  {
+    "id": "relevance-regime-dependent",
+    "source": "hmeg",
+    "target": "regime-dependent",
+    "type": "relevance",
+    "reason": "Motivates separate English OOD evaluation, frozen threshold selection and false-positive analysis. Similar signals do not prove HMEG’s router is effective."
+  },
+  {
+    "id": "relevance-rigorllm",
+    "source": "hmeg",
+    "target": "rigorllm",
+    "type": "relevance",
+    "reason": "Test whether heterogeneous expert fusion improves HMEG robustness without the runtime cost of a multi-LLM guardrail."
+  },
+  {
+    "id": "relevance-smoothllm",
+    "source": "hmeg",
+    "target": "smoothllm",
+    "type": "relevance",
+    "reason": "Measure HMEG robustness to character obfuscation without equating unusual formatting with malicious intent."
+  },
+  {
+    "id": "relevance-sok-guardrails",
+    "source": "hmeg",
+    "target": "sok-guardrails",
+    "type": "relevance",
+    "reason": "Measure HMEG false positives, routing cost and generalization within one controlled protocol."
+  },
+  {
+    "id": "relevance-wildguard",
+    "source": "hmeg",
+    "target": "wildguard",
+    "type": "relevance",
+    "reason": "Keep HMEG jailbreak labels distinct from harmful-topic and refusal labels, and audit coverage of benign prompts."
+  },
+  {
+    "id": "similarity-bipia-dangerous-effects",
+    "source": "bipia",
+    "target": "dangerous-effects",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-bipia-guardnet",
+    "source": "bipia",
+    "target": "guardnet",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-bipia-rigorllm",
+    "source": "bipia",
+    "target": "rigorllm",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-bipia-smoothllm",
+    "source": "bipia",
+    "target": "smoothllm",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-bipia-sok-guardrails",
+    "source": "bipia",
+    "target": "sok-guardrails",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-building-guardrails-multi-agent-nlp",
+    "source": "building-guardrails",
+    "target": "multi-agent-nlp",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, hybrid defense. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-building-guardrails-rigorllm",
+    "source": "building-guardrails",
+    "target": "rigorllm",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, hybrid defense. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-comparative-ml-injection-embedding-classifiers",
+    "source": "comparative-ml-injection",
+    "target": "embedding-classifiers",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: classical ML, embeddings. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-comparative-ml-injection-llama-guard",
+    "source": "comparative-ml-injection",
+    "target": "llama-guard",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, transformer. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-comparative-ml-injection-wildguard",
+    "source": "comparative-ml-injection",
+    "target": "wildguard",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, transformer. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-dangerous-effects-guardnet",
+    "source": "dangerous-effects",
+    "target": "guardnet",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-dangerous-effects-rigorllm",
+    "source": "dangerous-effects",
+    "target": "rigorllm",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-dangerous-effects-smoothllm",
+    "source": "dangerous-effects",
+    "target": "smoothllm",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-dangerous-effects-sok-guardrails",
+    "source": "dangerous-effects",
+    "target": "sok-guardrails",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-dualbreach-eguard-guardnet",
+    "source": "dualbreach-eguard",
+    "target": "guardnet",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: ensemble learning, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-dualbreach-eguard-rigorllm",
+    "source": "dualbreach-eguard",
+    "target": "rigorllm",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: ensemble learning, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-dualbreach-eguard-smoothllm",
+    "source": "dualbreach-eguard",
+    "target": "smoothllm",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: ensemble learning, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-free-jailbreak-detection-guardnet",
+    "source": "free-jailbreak-detection",
+    "target": "guardnet",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, threshold selection. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-free-jailbreak-detection-sok-guardrails",
+    "source": "free-jailbreak-detection",
+    "target": "sok-guardrails",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: efficiency, evaluation. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-guardnet-rigorllm",
+    "source": "guardnet",
+    "target": "rigorllm",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: ensemble learning, evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-guardnet-smoothllm",
+    "source": "guardnet",
+    "target": "smoothllm",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: ensemble learning, evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-guardnet-sok-guardrails",
+    "source": "guardnet",
+    "target": "sok-guardrails",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-jailbreaktracer-wildguard",
+    "source": "jailbreaktracer",
+    "target": "wildguard",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: synthetic data, transformer. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-llama-guard-wildguard",
+    "source": "llama-guard",
+    "target": "wildguard",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, safety taxonomy, transformer. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-multi-agent-nlp-rigorllm",
+    "source": "multi-agent-nlp",
+    "target": "rigorllm",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, hybrid defense. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-pd-mas-perplexity-attacks",
+    "source": "pd-mas",
+    "target": "perplexity-attacks",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: perplexity, structural signals, threshold selection. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-pd-mas-regime-dependent",
+    "source": "pd-mas",
+    "target": "regime-dependent",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: structural signals, threshold selection. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-perplexity-attacks-regime-dependent",
+    "source": "perplexity-attacks",
+    "target": "regime-dependent",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: structural signals, threshold selection. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-rigorllm-smoothllm",
+    "source": "rigorllm",
+    "target": "smoothllm",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: ensemble learning, evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-rigorllm-sok-guardrails",
+    "source": "rigorllm",
+    "target": "sok-guardrails",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  },
+  {
+    "id": "similarity-smoothllm-sok-guardrails",
+    "source": "smoothllm",
+    "target": "sok-guardrails",
+    "type": "similarity",
+    "reason": "Shared curated methodological tags: evaluation, guardrail robustness. See each paper’s methodology evidence. Qualitative connection, not a similarity percentage."
+  }
+]

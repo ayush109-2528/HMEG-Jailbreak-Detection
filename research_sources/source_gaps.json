@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Embedding-Based Detection of Indirect Prompt Injection Attacks in Large Language Models Using Semantic Context Analysis",
+    "url": "https://www.mdpi.com/1999-4893/19/1/92",
+    "reason": "Publisher page returned HTTP 403 during retrieval; full text not verified. Awaiting a supplied PDF."
+  },
+  {
+    "title": "Prompt Injection Detection in LLM Integrated Applications",
+    "url": "https://journal.hep.com.cn/ijndi/EN/PDF/10.53941/ijndi.2025.100013",
+    "reason": "Publisher PDF retrieval failed; full text not verified. Awaiting a supplied PDF."
+  },
+  {
+    "title": "Adversarial Prompt Detection in Large Language Models: A Classification-Driven Approach",
+    "url": "https://www.sciopen.com/article/10.32604/cmc.2025.063826",
+    "reason": "Publisher page returned HTTP 403 during retrieval; full text not verified. Awaiting a supplied PDF."
+  }
+]

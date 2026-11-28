@@ -1,0 +1,183 @@
+[
+  {
+    "index": 1,
+    "url": "https://proceedings.mlr.press/v348/akinrele26a.html",
+    "status": 200,
+    "pdf_links": [
+      "https://raw.githubusercontent.com/mlresearch/v348/main/assets/akinrele26a/akinrele26a.pdf",
+      "https://raw.githubusercontent.com/mlresearch/v348/main/assets/akinrele26a/akinrele26a.pdf"
+    ]
+  },
+  {
+    "index": 2,
+    "url": "https://proceedings.mlr.press/v235/yuan24f.html",
+    "status": 200,
+    "pdf_links": [
+      "https://raw.githubusercontent.com/mlresearch/v235/main/assets/yuan24f/yuan24f.pdf",
+      "https://raw.githubusercontent.com/mlresearch/v235/main/assets/yuan24f/yuan24f.pdf"
+    ]
+  },
+  {
+    "index": 3,
+    "url": "https://www.ndss-symposium.org/ndss-paper/dualbreach-efficient-dual-jailbreaking-via-target-driven-initialization-and-multi-target-optimization/",
+    "status": 200,
+    "pdf_links": [
+      "https://www.ndss-symposium.org/wp-content/uploads/2026-s1062-paper.pdf",
+      "https://www.ndss-symposium.org/wp-content/uploads/s1062-huang-slides.pdf"
+    ]
+  },
+  {
+    "index": 4,
+    "url": "https://www.mdpi.com/2076-3417/15/24/13190",
+    "status": 403,
+    "pdf_links": []
+  },
+  {
+    "index": 5,
+    "url": "https://arxiv.org/abs/2503.11517",
+    "status": 200,
+    "pdf_links": [
+      "https://arxiv.org/pdf/2503.11517",
+      "/pdf/2503.11517",
+      "/pdf/2503.11517"
+    ]
+  },
+  {
+    "index": 6,
+    "url": "https://arxiv.org/abs/2606.05566",
+    "status": 200,
+    "pdf_links": [
+      "https://arxiv.org/pdf/2606.05566",
+      "/pdf/2606.05566",
+      "/pdf/2606.05566"
+    ]
+  },
+  {
+    "index": 7,
+    "url": "https://arxiv.org/abs/2506.10597",
+    "status": 200,
+    "pdf_links": [
+      "https://arxiv.org/pdf/2506.10597",
+      "/pdf/2506.10597",
+      "/pdf/2506.10597"
+    ]
+  },
+  {
+    "index": 8,
+    "url": "https://aclanthology.org/2025.findings-emnlp.309/",
+    "status": 200,
+    "pdf_links": [
+      "https://aclanthology.org/2025.findings-emnlp.309.pdf",
+      "https://aclanthology.org/2025.findings-emnlp.309.pdf"
+    ]
+  },
+  {
+    "index": 9,
+    "url": "https://doaj.org/article/fcce6a631fe5454ab0bb49683ac623aa",
+    "status": 403,
+    "pdf_links": []
+  },
+  {
+    "index": 10,
+    "url": "https://arxiv.org/abs/2505.17066",
+    "status": 200,
+    "pdf_links": [
+      "https://arxiv.org/pdf/2505.17066",
+      "/pdf/2505.17066",
+      "/pdf/2505.17066"
+    ]
+  },
+  {
+    "index": 11,
+    "url": "https://www.nature.com/articles/s41598-026-43883-0",
+    "status": 200,
+    "pdf_links": [
+      "https://www.nature.com/articles/s41598-026-43883-0.pdf",
+      "/articles/s41598-026-43883-0.pdf",
+      "/articles/s41598-026-43883-0.pdf",
+      "/articles/s41598-026-43883-0.pdf"
+    ]
+  },
+  {
+    "index": 12,
+    "url": "https://link.springer.com/article/10.1007/s10207-026-01264-8",
+    "status": 200,
+    "pdf_links": [
+      "https://link.springer.com/content/pdf/10.1007/s10207-026-01264-8.pdf",
+      "OWASP. Owasp top 10 for llm applications version 1.1 (2023). \n                  https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf\n                  \n                . Accessed: 2025-05-05",
+      "/content/pdf/10.1007/s10207-026-01264-8.pdf",
+      "/content/pdf/10.1007/s10207-026-01264-8.pdf",
+      "https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf"
+    ]
+  },
+  {
+    "index": 13,
+    "url": "https://ceur-ws.org/Vol-3920/paper15.pdf",
+    "status": 200,
+    "pdf_links": []
+  },
+  {
+    "index": 14,
+    "url": "https://www.mdpi.com/1999-4893/19/1/92",
+    "status": 403,
+    "pdf_links": []
+  },
+  {
+    "index": 15,
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/0f69b4b96a46f284b726fbd70f74fb3b-Abstract.html",
+    "status": 200,
+    "pdf_links": [
+      "https://proceedings.neurips.cc/paper_files/paper/2024/file/0f69b4b96a46f284b726fbd70f74fb3b-Paper-Datasets_and_Benchmarks_Track.pdf",
+      "/paper_files/paper/2024/file/0f69b4b96a46f284b726fbd70f74fb3b-Paper-Datasets_and_Benchmarks_Track.pdf"
+    ]
+  },
+  {
+    "index": 16,
+    "url": "https://arxiv.org/abs/2310.03684",
+    "status": 200,
+    "pdf_links": [
+      "https://arxiv.org/pdf/2310.03684",
+      "/pdf/2310.03684",
+      "/pdf/2310.03684"
+    ]
+  },
+  {
+    "index": 17,
+    "url": "https://arxiv.org/abs/2308.14132",
+    "status": 200,
+    "pdf_links": [
+      "https://arxiv.org/pdf/2308.14132",
+      "/pdf/2308.14132",
+      "/pdf/2308.14132"
+    ]
+  },
+  {
+    "index": 18,
+    "url": "https://arxiv.org/abs/2312.14197",
+    "status": 200,
+    "pdf_links": [
+      "https://arxiv.org/pdf/2312.14197",
+      "/pdf/2312.14197",
+      "/pdf/2312.14197"
+    ]
+  },
+  {
+    "index": 19,
+    "url": "https://journal.hep.com.cn/ijndi/EN/PDF/10.53941/ijndi.2025.100013",
+    "error": "HTTPSConnectionPool(host='journal.hep.com.cn', port=443): Max retries exceeded with url: /"
+  },
+  {
+    "index": 20,
+    "url": "https://www.sciopen.com/article/10.32604/cmc.2025.063826",
+    "status": 403,
+    "pdf_links": []
+  },
+  {
+    "index": 21,
+    "url": "https://ai.meta.com/research/publications/llama-guard-llm-based-input-output-safeguard-for-human-ai-conversations/",
+    "status": 200,
+    "pdf_links": [
+      "https://scontent-del2-2.xx.fbcdn.net/v/t39.2365-6/408725049_3688557441468029_8103913771964668529_n.pdf?_nc_cat=100&amp;_nc_map=urlgen_bucketless&amp;ccb=1-7&amp;_nc_sid=3c67a6&amp;_nc_ohc=ygw9lRHH1doQ7kNvwFizVKW&amp;_nc_oc=AdpxjcZE-7Ll65WGlJx3gXZgr3x-kx0hXGUVqyZ9tqECSYADpmyPA5CbYIf_L3JF_XQ&amp;_nc_zt=14&amp;_nc_ht=scontent-del2-2.xx&amp;_nc_gid=CEXV13jd-sEwEcBe_w4RCw&amp;_nc_ss=7f30f&amp;oh=00_AQR7EoNMx-mcFv73Lq9edmz4sZKdgGp8r53qHaitWKC0ZQ&amp;oe=6B0CF7D9"
+    ]
+  }
+]

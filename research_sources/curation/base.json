@@ -1,0 +1,1020 @@
+[
+  {
+    "id": "pd-mas",
+    "title": "A Hybrid Perplexity-MAS Framework for Proactive Jailbreak Attack Detection in Large Language Models",
+    "shortTitle": "Perplexity + MAS",
+    "authors": [
+      "Ping Wang",
+      "Hao-Cyuan Li",
+      "Hsiao-Chung Lin",
+      "Wen-Hui Lin",
+      "Fang-Ci Wu",
+      "Nian-Zu Xie",
+      "Zhon-Ghan Yang"
+    ],
+    "year": 2025,
+    "venue": "Applied Sciences 15, 13190",
+    "type": "Journal article",
+    "doi": "10.3390/app152413190",
+    "arxiv": null,
+    "url": "https://doi.org/10.3390/app152413190",
+    "pdfUrl": "https://doi.org/10.3390/app152413190",
+    "publicPdf": "/research/papers/pd-mas.pdf",
+    "source": "applsci-15-13190-v2.pdf",
+    "pages": 25,
+    "category": "ensemble",
+    "tags": [
+      "hybrid defense",
+      "perplexity",
+      "threshold selection",
+      "structural signals"
+    ],
+    "components": [
+      "pattern",
+      "router",
+      "meta",
+      "evaluation"
+    ],
+    "languages": [
+      "English"
+    ],
+    "abstract": "Jailbreak attacks (JAs) represent a sophisticated subclass of adversarial threats wherein malicious actors craft strategically engineered prompts that subvert the intended operational boundaries of large language models (LLMs). These attacks exploit latent vulnerabilities in generative AI architectures, allowing adversaries to circumvent established safety protocols and illicitly induce the model to output prohibited, unethical, or harmful content. The emergence of such exploits underscores critical gaps in the security and controllability of modern AI systems, raising profound concerns about their societal impact and deployment in sensitive environments. In response, this study introduces an innovative defense framework that synergistically integrates language model perplexity analysis with a Multi-Agent System (MAS)-oriented detection architecture. This hybrid design aims to fortify the resilience of LLMs by proactively identifying and neutralizing jailbreak attempts, thereby ensuring the protection of user privacy and ethical integrity. The experimental setup adopts a query-driven adversarial probing strategy, in which jailbreak prompts are dynamically generated and injected into the open-source LLaMA-2 model to systematically explore potential vulnerabilities. To ensure rigorous validation, the proposed framework will be evaluated using a custom jailbreak detection benchmark encompassing metrics such as Attack Success Rate (ASR), Defense Success Rate (DSR), Defense Pass Rate (DPR), False Positive Rate, Benign Pass Rate (BPR), and End-to-End Latency. Through iterative experimentation and continuous refinement, this work endeavors to advance the defensive capabilities of LLM-based systems, enabling more trustworthy, secure, and ethically aligned deployment of generative AI in real-world environments.",
+    "abstractPermission": "Verbatim source abstract; line wraps and ligatures normalized. CC BY 4.0; attribution retained.",
+    "summary": "The researchers study whether perplexity screening alone misses fluent jailbreak prompts. Their PD–MAS framework first checks linguistic anomalies and then combines intent, structural and similarity signals in a multi-agent layer. The experiments use LLaMA-2-7B-chat and a custom set containing 75 malicious and 75 benign prompts. Table 8 reports 67 detected attacks and no false positives in that setting. This is a small pilot result, not evidence of universal reliability. For HMEG, the paper motivates examining staged analysis and complementary signals. HMEG instead investigates heterogeneous classifiers and learned fusion, with separate routing and false-positive evaluation.",
+    "objective": "Combine anomaly screening and multi-signal analysis to detect jailbreak prompts.",
+    "methodology": "Perplexity screening escalates suspicious inputs to specialized intent, structure and similarity agents. Weighted aggregation and a selected threshold produce the decision.",
+    "models": [
+      "LLaMA-2-7B-chat",
+      "Multi-Agent System"
+    ],
+    "features": [
+      "Perplexity",
+      "Intent score",
+      "Structural patterns",
+      "Semantic similarity"
+    ],
+    "datasets": [
+      "Custom evaluation: 75 malicious and 75 benign prompts (Tables 7–8)"
+    ],
+    "results": "Table 8 reports TP=67, FP=0, TN=75, FN=8; DSR 89.3%. Table 9 has different phase results and inconsistent latency units between table and prose; no latency comparison is drawn here.",
+    "metrics": [
+      "ASR",
+      "DSR",
+      "FPR",
+      "BPR"
+    ],
+    "limitations": "The conclusion describes an early-stage pilot and calls for larger-scale adversarial evaluation and standardized benchmarks.",
+    "opportunity": "Motivates testing staged computation and complementary evidence. HMEG uses learned expert classifiers; it does not reproduce this multi-agent framework.",
+    "findings": "Table 8 reports TP=67, FP=0, TN=75, FN=8; DSR 89.3%. Table 9 has different phase results and inconsistent latency units between table and prose; no latency comparison is drawn here.",
+    "scopeNote": "",
+    "direct": "",
+    "indirect": "",
+    "ensemble": "Weighted multi-agent signals",
+    "calibration": "Grid-search threshold",
+    "routing": "Perplexity pre-screen then deeper signals",
+    "steps": [
+      "Prompt preprocessing",
+      "Perplexity screening",
+      "Suspicious prompts: intent, structure and similarity signals",
+      "Weighted MAS score",
+      "Thresholded decision"
+    ],
+    "evidence": {
+      "abstract": [
+        1
+      ],
+      "metadata": [
+        1
+      ],
+      "methodology": [
+        8,
+        9,
+        13,
+        14
+      ],
+      "datasets": [
+        19,
+        20
+      ],
+      "results": [
+        19,
+        20
+      ],
+      "limitations": [
+        23
+      ]
+    },
+    "references": [],
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "versions": [
+      {
+        "label": "Source version used for claims",
+        "url": "https://doi.org/10.3390/app152413190"
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Figure 2. PD–MAS model for jailbreak attack prompts detection. Full source page shown to preserve context.",
+        "page": 9,
+        "image": "/research/figures/pd-mas.png"
+      }
+    ]
+  },
+  {
+    "id": "building-guardrails",
+    "title": "Building Guardrails for Large Language Models",
+    "shortTitle": "Building Guardrails",
+    "authors": [
+      "Yi Dong",
+      "Ronghui Mu",
+      "Gaojie Jin",
+      "Yi Qi",
+      "Jinwei Hu",
+      "Xingyu Zhao",
+      "Jie Meng",
+      "Wenjie Ruan",
+      "Xiaowei Huang"
+    ],
+    "year": 2024,
+    "venue": "ICML 2024, PMLR 235",
+    "type": "Conference position paper",
+    "doi": null,
+    "arxiv": "2402.01822v2",
+    "url": "https://arxiv.org/abs/2402.01822v2",
+    "pdfUrl": "https://arxiv.org/pdf/2402.01822v2",
+    "publicPdf": null,
+    "source": "Building Guardrails for Large Language Models - 2402.01822v2.pdf",
+    "pages": 20,
+    "category": "evaluation",
+    "tags": [
+      "evaluation",
+      "hybrid defense",
+      "requirements"
+    ],
+    "components": [
+      "evaluation",
+      "meta"
+    ],
+    "languages": [],
+    "abstract": null,
+    "abstractPermission": "Abstract not republished; follow the official source link.",
+    "summary": "This position paper asks how guardrails should be engineered for real applications rather than judged only by a single benchmark score. It reviews Llama Guard, NeMo and Guardrails AI and discusses risks involving harmful outputs, fairness, privacy and uncertainty. It proposes a systematic process that begins with requirements, considers learning and symbolic mechanisms, and connects development to verification and testing. It is not a new prompt classifier trained on a reported benchmark corpus. For HMEG, the useful lesson is methodological: define the English-language scope, document assumptions, and evaluate false positives and computation alongside security. The paper does not validate HMEG’s particular architecture.",
+    "objective": "Identify requirements and engineering challenges for dependable LLM guardrails.",
+    "methodology": "A position paper reviews guardrail systems and argues for multidisciplinary requirements, neural-symbolic implementation, verification and testing.",
+    "models": [
+      "Llama Guard",
+      "NeMo Guardrails",
+      "Guardrails AI"
+    ],
+    "features": [],
+    "datasets": [],
+    "results": "Qualitative framework analysis; no directly comparable HMEG detection accuracy is claimed.",
+    "metrics": [],
+    "limitations": "Conflicting requirements, semantic shifts and the limits of verification complicate assurances about guardrails.",
+    "opportunity": "Motivates explicit scope, transparent limitations and tests that examine security and usability together.",
+    "findings": "Qualitative framework analysis; no directly comparable HMEG detection accuracy is claimed.",
+    "scopeNote": "",
+    "direct": "",
+    "indirect": "",
+    "ensemble": "",
+    "calibration": "",
+    "routing": "",
+    "steps": [
+      "Define application risks",
+      "Elicit guardrail requirements",
+      "Combine symbolic and learning components",
+      "Verify and test requirements",
+      "Document evidence and trade-offs"
+    ],
+    "evidence": {
+      "abstract": [
+        1
+      ],
+      "metadata": [
+        1
+      ],
+      "methodology": [
+        8,
+        9
+      ],
+      "results": [
+        18
+      ],
+      "limitations": [
+        9
+      ]
+    },
+    "references": [],
+    "license": "Not verified for public redistribution",
+    "licenseUrl": null,
+    "versions": [
+      {
+        "label": "Source version used for claims",
+        "url": "https://arxiv.org/abs/2402.01822v2"
+      }
+    ],
+    "figures": []
+  },
+  {
+    "id": "indian-injection",
+    "title": "Detection and analysis of prompt injection in indian multilingual large language models",
+    "shortTitle": "Hybrid injection detection",
+    "authors": [
+      "Jagadeesan Srinivasan",
+      "Silla Ann Regi",
+      "Anbarasa Kumar Anbarasan",
+      "Suresh A",
+      "Vetriselvi T",
+      "Sivakumar Venu"
+    ],
+    "year": 2026,
+    "venue": "Scientific Reports 16, 16208",
+    "type": "Journal article",
+    "doi": "10.1038/s41598-026-43883-0",
+    "arxiv": null,
+    "url": "https://doi.org/10.1038/s41598-026-43883-0",
+    "pdfUrl": "https://doi.org/10.1038/s41598-026-43883-0",
+    "publicPdf": null,
+    "source": "Detection and Analysis of Prompt Injection in Indian Multilingual LLMs (2026).pdf",
+    "pages": 22,
+    "category": "multilingual",
+    "tags": [
+      "TF-IDF",
+      "character features",
+      "hybrid defense",
+      "transformer"
+    ],
+    "components": [
+      "word",
+      "format",
+      "meaning",
+      "instruction"
+    ],
+    "languages": [
+      "Hindi",
+      "Hinglish"
+    ],
+    "abstract": null,
+    "abstractPermission": "Abstract not republished; follow the official source link.",
+    "summary": "The authors investigate injection detection for Hindi and Hinglish using a 4,000-prompt dataset. They compare TF-IDF-based classical classifiers, including logistic regression, SVM, random forest and XGBoost, with transformer models and a rule-assisted hybrid. The abstract reports 99.70% hybrid accuracy, but the full paper’s evaluation labels should be checked before interpreting that number as a held-out result. The authors acknowledge limitations of translated data and the absence of statistical testing. HMEG draws only methodological context from the combination of lexical, character and contextual evidence. The language capabilities of this paper are outside HMEG’s current English-only research scope.",
+    "objective": "Examine prompt-injection detection using language patterns and contextual classification.",
+    "methodology": "Classical TF-IDF baselines and transformer classifiers are compared with a rule-plus-transformer hybrid.",
+    "models": [
+      "Logistic Regression",
+      "SVM",
+      "Random Forest",
+      "XGBoost",
+      "Transformer",
+      "Distil Transformer"
+    ],
+    "features": [
+      "TF-IDF",
+      "Character n-grams",
+      "Contextual embeddings",
+      "Rule-based patterns"
+    ],
+    "datasets": [
+      "4,000 prompts: 2,000 Hindi and 2,000 Hinglish"
+    ],
+    "results": "The abstract reports 99.70% hybrid accuracy. Figure 7 is labelled Full Dataset; evaluation settings must be checked before treating that number as held-out generalization.",
+    "metrics": [
+      "Accuracy",
+      "Precision",
+      "Recall",
+      "F1"
+    ],
+    "limitations": "Authors note that translated data may not reflect real attackers and that statistical hypothesis testing was not conducted.",
+    "opportunity": "Feature engineering and complementary rule/model signals can inform English-only experiments. No multilingual capability is claimed for HMEG.",
+    "findings": "The abstract reports 99.70% hybrid accuracy. Figure 7 is labelled Full Dataset; evaluation settings must be checked before treating that number as held-out generalization.",
+    "scopeNote": "Language coverage in this paper is outside HMEG’s English-only scope. Only its detection methodology is used as background.",
+    "direct": "",
+    "indirect": "",
+    "ensemble": "",
+    "calibration": "",
+    "routing": "",
+    "steps": [
+      "Labeled prompt corpus",
+      "Normalize and extract lexical / contextual features",
+      "Compare classical and transformer models",
+      "Combine rules with transformer outputs",
+      "Evaluate injection classification"
+    ],
+    "evidence": {
+      "abstract": [
+        1
+      ],
+      "metadata": [
+        1
+      ],
+      "methodology": [
+        7,
+        11,
+        12,
+        13
+      ],
+      "datasets": [
+        1,
+        10
+      ],
+      "results": [
+        1,
+        15
+      ],
+      "limitations": [
+        10,
+        20
+      ]
+    },
+    "references": [],
+    "license": "CC BY-NC-ND 4.0; public redistribution disabled for this site",
+    "licenseUrl": null,
+    "versions": [
+      {
+        "label": "Source version used for claims",
+        "url": "https://doi.org/10.1038/s41598-026-43883-0"
+      }
+    ],
+    "figures": []
+  },
+  {
+    "id": "embedding-classifiers",
+    "title": "Embedding-based classifiers can detect prompt injection attacks",
+    "shortTitle": "Embedding-based classifiers",
+    "authors": [
+      "Md. Ahsan Ayub",
+      "Subhabrata Majumdar"
+    ],
+    "year": 2024,
+    "venue": "CAMLIS 2024",
+    "type": "Conference paper",
+    "doi": null,
+    "arxiv": "2410.22284v1",
+    "url": "https://arxiv.org/abs/2410.22284v1",
+    "pdfUrl": "https://arxiv.org/pdf/2410.22284v1",
+    "publicPdf": "/research/papers/embedding-classifiers.pdf",
+    "source": "2410.22284v1.pdf (official replacement for truncated local copy)",
+    "pages": 11,
+    "category": "semantic",
+    "tags": [
+      "embeddings",
+      "classical ML",
+      "MiniLM"
+    ],
+    "components": [
+      "meaning",
+      "evaluation"
+    ],
+    "languages": [
+      "English"
+    ],
+    "abstract": "Large Language Models (LLMs) are seeing significant adoption in every type of organization due to their exceptional generative capabilities. However, LLMs are found to be vulnerable to various adversarial attacks, particularly prompt injection attacks, which trick them into producing harmful or inappropriate content. Adversaries execute such attacks by crafting malicious prompts to deceive the LLMs. In this paper, we propose a novel approach based on embedding-based Machine Learning (ML) classifiers to protect LLM-based applications against this severe threat. We leverage three commonly used embedding models to generate embeddings of malicious and benign prompts and utilize ML classifiers to predict whether an input prompt is malicious. Out of several traditional ML methods, we achieve the best performance with classifiers built using Random Forest and XGBoost. Our classifiers outperform state-of-the-art prompt injection classifiers available in open-source implementations, which use encoder-only neural networks.",
+    "abstractPermission": "Verbatim source abstract; line wraps and ligatures normalized. CC BY 4.0; attribution retained.",
+    "summary": "The researchers test whether malicious prompts can be recognized from embedding vectors using conventional machine learning. They deduplicate public sources into 467,057 prompts and use a stratified 80/20 split. OpenAI, GTE and MiniLM embeddings feed logistic regression, random forest and XGBoost classifiers. Random Forest with OpenAI embeddings gives the strongest reported results in their comparison, while the paper discusses precision–recall trade-offs against other detectors. The study primarily addresses direct injection and leaves other settings for future work. For HMEG, it supports investigating an embedding-plus-classifier Meaning Expert, but it does not establish the performance of HMEG’s selected encoder or hierarchical fusion.",
+    "objective": "Test whether embeddings with conventional classifiers distinguish benign and malicious prompts.",
+    "methodology": "Three embedding models generate numerical features; LR, Random Forest and XGBoost are trained and evaluated on stratified splits.",
+    "models": [
+      "Logistic Regression",
+      "Random Forest",
+      "XGBoost",
+      "all-MiniLM-L6-v2",
+      "gte-large",
+      "text-embedding-3-small"
+    ],
+    "features": [
+      "Sentence embeddings"
+    ],
+    "datasets": [
+      "467,057 deduplicated prompts; 109,934 malicious; stratified 80/20 split"
+    ],
+    "results": "Table 5 reports Random Forest + OpenAI embeddings: AUC 0.764, precision 0.867, recall 0.870 and F1 0.868 on this study’s test set.",
+    "metrics": [
+      "ROC-AUC",
+      "Precision",
+      "Recall",
+      "F1"
+    ],
+    "limitations": "The authors focus on direct injection; indirect injection and other failure modes are left for future study.",
+    "opportunity": "Direct methodological support for a frozen embedding model followed by a classifier. HMEG treats this as one expert, not the entire decision system.",
+    "findings": "Table 5 reports Random Forest + OpenAI embeddings: AUC 0.764, precision 0.867, recall 0.870 and F1 0.868 on this study’s test set.",
+    "scopeNote": "",
+    "direct": "Primary evaluated task",
+    "indirect": "Future work",
+    "ensemble": "",
+    "calibration": "",
+    "routing": "",
+    "steps": [
+      "Prompt",
+      "OpenAI / GTE / MiniLM embeddings",
+      "Numerical feature vectors",
+      "LR / Random Forest / XGBoost",
+      "Benign or malicious classification"
+    ],
+    "evidence": {
+      "abstract": [
+        1
+      ],
+      "metadata": [
+        1
+      ],
+      "methodology": [
+        4,
+        5
+      ],
+      "datasets": [
+        4
+      ],
+      "results": [
+        7,
+        8
+      ],
+      "limitations": [
+        8
+      ]
+    },
+    "references": [],
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "versions": [
+      {
+        "label": "Source version used for claims",
+        "url": "https://arxiv.org/abs/2410.22284v1"
+      }
+    ],
+    "figures": [
+      {
+        "caption": "Table 3. Performance comparisons based on AUC across classifiers and embedding methods. Full source page shown to preserve context.",
+        "page": 7,
+        "image": "/research/figures/embedding-classifiers.png"
+      }
+    ]
+  },
+  {
+    "id": "regime-dependent",
+    "title": "Prompt Injection Detection is Regime-Dependent: A Deployment-Aware Evaluation with Interpretable Structural Signals",
+    "shortTitle": "Regime-dependent detection",
+    "authors": [
+      "Akindoyin Akinrele",
+      "Shreyank N Gowda"
+    ],
+    "year": 2026,
+    "venue": "Fourth UK AI Conference 2026, PMLR 348",
+    "type": "Conference paper",
+    "doi": null,
+    "arxiv": "2605.26999v1",
+    "url": "https://proceedings.mlr.press/v348/akinrele26a.html",
+    "pdfUrl": "https://arxiv.org/pdf/2605.26999v1",
+    "publicPdf": "/research/papers/regime-dependent.pdf",
+    "source": "Prompt Injection Detection is Regime-Dependent_ A Deployment-Aware Evaluation with Interpretable Structural Signals - 2605.26999v1.pdf",
+    "pages": 19,
+    "category": "structural",
+    "tags": [
+      "structural signals",
+      "TF-IDF",
+      "threshold selection",
+      "OOD evaluation",
+      "embeddings"
+    ],
+    "components": [
+      "word",
+      "pattern",
+      "instruction",
+      "router",
+      "meta",
+      "evaluation"
+    ],
+    "languages": [
+      "English"
+    ],
+    "abstract": "Prompt injection poses a critical threat to the safe deployment of large language models, yet existing detection approaches are typically evaluated under limited settings that do not reect real-world operating constraints. In this work, we present a deployment-aware evaluation of prompt injection detection using a multi-model and multi-regime experimental framework. We compare lexical, semantic, structural, and transformer-based detectors across multiple out-of-distribution settings, repeated data splits, and both ranking and thresholded deployment metrics. We introduce interpretable structural signals that capture hierarchy overrides, system prompt spoong, role redenition, and evasion patterns, and assess their contribution both within sparse models and in combination with strong encoder baselines. Our results show that detection performance is highly regime-dependent and sensitive to threshold selection, with no single model dominating across all settings. Transformerbased models achieve the strongest overall performance, while structural signals provide modest but consistent gains in certain regimes and improve low false positive rate behaviour in harder scenarios. These ndings highlight the gap between ranking performance and deployment eectiveness and underscore the importance of evaluating prompt injection defences under realistic operational constraints. Code will be released.",
+    "abstractPermission": "Verbatim source abstract; line wraps and ligatures normalized. CC BY 4.0; attribution retained.",
+    "summary": "This study compares prompt-injection detectors under several evaluation regimes rather than assuming that one test set represents deployment. Lexical, semantic, structural and transformer-based systems are tested with repeated splits and out-of-distribution sources. The authors introduce interpretable instruction-boundary signals and select thresholds using validation data only. They report that no model dominates every regime and that strong ranking scores can coexist with weak behavior at conservative false-positive rates. The paper gives HMEG a useful evaluation template: preserve source boundaries, examine benign hard negatives and measure low-FPR recall. It supports testing the proposed architecture, not claiming that hierarchical routing already solves distribution shift.",
+    "objective": "Evaluate how detector effectiveness changes across deployment regimes and operating thresholds.",
+    "methodology": "Compare lexical, semantic, structural and encoder families; choose thresholds only on validation predictions, freeze them, and test ID and multiple OOD regimes.",
+    "models": [
+      "Logistic Regression",
+      "RoBERTa",
+      "DeBERTa",
+      "LLM Guard"
+    ],
+    "features": [
+      "Lexical features",
+      "Semantic representations",
+      "Instruction-boundary violation signals"
+    ],
+    "datasets": [
+      "6,424 total records across ID and OOD regimes (Table 4); ID train 694, validation 149, test 149"
+    ],
+    "results": "Table 5 reports ID RoBERTa + IBVS Total macro-F1 0.9541 ± 0.0354. Strong ranking performance does not consistently imply strong low-FPR behavior across regimes.",
+    "metrics": [
+      "Macro-F1",
+      "ROC-AUC",
+      "AUC-PR",
+      "TPR at 1%, 5%, 10% FPR"
+    ],
+    "limitations": "Short prompts offer limited evidence; benign security text can resemble attacks. Authors call for targeted slices and broader deployment testing.",
+    "opportunity": "Motivates separate English OOD evaluation, frozen threshold selection and false-positive analysis. Similar signals do not prove HMEG’s router is effective.",
+    "findings": "Table 5 reports ID RoBERTa + IBVS Total macro-F1 0.9541 ± 0.0354. Strong ranking performance does not consistently imply strong low-FPR behavior across regimes.",
+    "scopeNote": "",
+    "direct": "",
+    "indirect": "",
+    "ensemble": "",
+    "calibration": "Validation-only threshold selection; fixed on test and OOD",
+    "routing": "",
+    "steps": [
+      "Deduplicate and split public prompt datasets",
+      "Lexical / semantic / structural / encoder detectors",
+      "Validation-only threshold selection",
+      "Freeze operating point",
+      "Evaluate ID, OOD and low-FPR regimes"
+    ],
+    "evidence": {
+      "abstract": [
+        1
+      ],
+      "metadata": [
+        1
+      ],
+      "methodology": [
+        9,
+        10
+      ],
+      "datasets": [
+        9
+      ],
+      "results": [
+        11
+      ],
+      "limitations": [
+        16,
+        17
+      ]
+    },
+    "references": [],
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "versions": [
+      {
+        "label": "Source version used for claims",
+        "url": "https://proceedings.mlr.press/v348/akinrele26a.html"
+      },
+      {
+        "label": "Supplied preprint v1; page references refer to this version",
+        "url": "https://arxiv.org/abs/2605.26999v1"
+      }
+    ],
+    "figures": []
+  },
+  {
+    "id": "jailbreaktracer",
+    "title": "JailbreakTracer: Explainable Detection of Jailbreaking Prompts in LLMs Using Synthetic Data Generation",
+    "shortTitle": "JailbreakTracer",
+    "authors": [
+      "Md. Faiyaz Abdullah Sayeedi",
+      "Maaz Bin Hossain",
+      "Md. Kamrul Hassan",
+      "Sabrina Afrin",
+      "Molla Md. Sabit Hossain",
+      "Md. Shohrab Hossain"
+    ],
+    "year": 2025,
+    "venue": "IEEE Access 13",
+    "type": "Journal article",
+    "doi": "10.1109/ACCESS.2025.3579996",
+    "arxiv": null,
+    "url": "https://doi.org/10.1109/ACCESS.2025.3579996",
+    "pdfUrl": "https://doi.org/10.1109/ACCESS.2025.3579996",
+    "publicPdf": "/research/papers/jailbreaktracer.pdf",
+    "source": "research papers 1.pdf",
+    "pages": 16,
+    "category": "llm",
+    "tags": [
+      "transformer",
+      "synthetic data",
+      "explainability"
+    ],
+    "components": [
+      "meaning",
+      "evaluation"
+    ],
+    "languages": [
+      "English"
+    ],
+    "abstract": "The emergence of Large Language Models (LLMs) has revolutionized natural language processing (NLP), enabling remarkable advancements across various applications. However, these models remain susceptible to adversarial prompts, commonly referred to as jailbreaks, which exploit their vulnerabilities to bypass ethical and safety constraints. These prompts manipulate LLMs to produce harmful or forbidden outputs, posing serious ethical and security challenges. In this study, we propose JailbreakTracer, a novel framework leveraging synthetic data generation and Explainable AI (XAI) to detect and classify jailbreaking prompts. We first construct two comprehensive datasets: a Toxic Prompt Classification Dataset, combining real-world and synthetic jailbreak prompts, and a Forbidden Question Reasoning Dataset, categorizing forbidden queries into 13 distinct scenarios with clear reasoning labels. Synthetic toxic prompts are generated using a fine-tuned GPT model, achieving an attack success rate of 95.1%, effectively addressing the class imbalance. Using transformer-based architectures, we train classifiers that achieved 97.25% accuracy in detecting jailbreak prompts and 100% accuracy in categorizing forbidden questions. Our approach integrates XAI techniques, such as LIME, to ensure interpretability and transparency in the model’s predictions. Extensive evaluations demonstrate the efficacy of JailbreakTracer in detecting and reasoning about jailbreak prompts, providing a critical step toward enhancing the safety and accountability of LLMs. The dataset and code are available on GitHub: https://github.com/faiyazabdullah/JailbreakTracer",
+    "abstractPermission": "Verbatim source abstract; line wraps and ligatures normalized. CC BY 4.0; attribution retained.",
+    "summary": "JailbreakTracer studies detection and explanation of jailbreak prompts using both collected and synthetic examples. It builds a binary toxic-prompt corpus and a separate forbidden-question dataset with 13 categories. Fine-tuned transformer classifiers, including BERT and RoBERTa, perform the classification, while LIME supplies token-level explanations. The abstract reports 97.25% accuracy for detection and 100% for categorization; these must remain separate tasks with their own experimental settings. The authors acknowledge controlled-data and synthetic-data limitations. HMEG can use this work to motivate transparent augmentation records and explanation checks, while independently measuring false positives and generalization on English prompts instead of transferring the paper’s performance claims.",
+    "objective": "Detect jailbreak prompts and explain classification decisions with synthetic augmentation.",
+    "methodology": "Construct real and synthetic prompt corpora, fine-tune transformer classifiers, and apply LIME explanations.",
+    "models": [
+      "BERT",
+      "RoBERTa",
+      "Fine-tuned GPT",
+      "LIME"
+    ],
+    "features": [
+      "Transformer representations",
+      "Token-level explanations"
+    ],
+    "datasets": [
+      "Toxic Prompt Classification Dataset",
+      "Forbidden Question Reasoning Dataset: 13 categories"
+    ],
+    "results": "Abstract reports 97.25% jailbreak detection accuracy and 100% forbidden-question categorization accuracy. These are different tasks; they are not HMEG results.",
+    "metrics": [
+      "Accuracy",
+      "Precision",
+      "Recall",
+      "F1"
+    ],
+    "limitations": "Controlled datasets and reliance on synthetic prompts may limit generalization; token-level explanations have limitations.",
+    "opportunity": "Motivates clear augmentation provenance and explainability checks. HMEG must separately test false positives on unseen English data.",
+    "findings": "Abstract reports 97.25% jailbreak detection accuracy and 100% forbidden-question categorization accuracy. These are different tasks; they are not HMEG results.",
+    "scopeNote": "",
+    "direct": "",
+    "indirect": "",
+    "ensemble": "",
+    "calibration": "",
+    "routing": "",
+    "steps": [
+      "Collect and label prompts",
+      "Augment with synthetic examples",
+      "Train BERT / RoBERTa classifiers",
+      "Classify toxicity or forbidden categories",
+      "Inspect LIME explanations"
+    ],
+    "evidence": {
+      "abstract": [
+        1
+      ],
+      "metadata": [
+        1
+      ],
+      "methodology": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "datasets": [
+        4,
+        5
+      ],
+      "results": [
+        1,
+        10
+      ],
+      "limitations": [
+        14
+      ]
+    },
+    "references": [
+      {
+        "title": "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations",
+        "page": 15,
+        "url": "https://arxiv.org/abs/2312.06674"
+      }
+    ],
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "versions": [
+      {
+        "label": "Source version used for claims",
+        "url": "https://doi.org/10.1109/ACCESS.2025.3579996"
+      }
+    ],
+    "figures": []
+  },
+  {
+    "id": "dangerous-effects",
+    "title": "The Dangerous Effects of a Frustratingly Easy LLMs Jailbreak Attack",
+    "shortTitle": "Dangerous effects of jailbreaks",
+    "authors": [
+      "Marco Bombieri",
+      "Simone Paolo Ponzetto",
+      "Marco Rospocher"
+    ],
+    "year": 2025,
+    "venue": "IEEE Access 13",
+    "type": "Journal article",
+    "doi": "10.1109/ACCESS.2025.3589112",
+    "arxiv": null,
+    "url": "https://doi.org/10.1109/ACCESS.2025.3589112",
+    "pdfUrl": "https://doi.org/10.1109/ACCESS.2025.3589112",
+    "publicPdf": "/research/papers/dangerous-effects.pdf",
+    "source": "research papers 2.pdf",
+    "pages": 14,
+    "category": "attacks",
+    "tags": [
+      "guardrail robustness",
+      "evaluation",
+      "semantic intent"
+    ],
+    "components": [
+      "meaning",
+      "instruction",
+      "evaluation"
+    ],
+    "languages": [
+      "English",
+      "Italian"
+    ],
+    "abstract": "Large Language Models (LLMs) are employed in various applications, including direct end-user interactions. Ideally, they should consistently generate both factually accurate and non-offensive responses, and they are specifically trained and safeguarded to meet these standards. However, this paper demonstrates that simple, manual, and generalizable jailbreaking attacks, such as reasoning backward, can effectively bypass the safeguards implemented in LLMs, potentially leading to harmful consequences. These include the dissemination of misinformation, the amplification of harmful recommendations, and toxic comments. Furthermore, these attacks have been found to reveal latent biases within LLMs, raising concerns about their ethical and societal implications. In particular, the vulnerabilities exposed by such attacks appear to be generalizable across different LLMs and languages. This paper also assesses the effectiveness of a straightforward architectural framework to mitigate the impact of jailbreak attacks on end users.",
+    "abstractPermission": "Verbatim source abstract; line wraps and ligatures normalized. CC BY 4.0; attribution retained.",
+    "summary": "This paper examines the consequences of straightforward jailbreak vulnerabilities in conversational models. The researchers compare outputs across several systems and languages, using human annotations to inspect harmful recommendations, misinformation and biased responses. They also evaluate a defensive wrapper intended to prevent unsafe interactions. The important result for HMEG is not an attack recipe but the evidence that apparent safeguards can fail in ways that surface-word matching may miss. The work motivates semantic and instruction-aware analysis and careful downstream evaluation. HMEG remains an English-only prompt detector, so the paper’s cross-language tests and generated-response outcomes should not be described as capabilities or reproduced results of this website.",
+    "objective": "Study the consequences of simple jailbreak vulnerabilities and a defensive wrapper.",
+    "methodology": "Compare safeguarded and compromised model behavior, annotate responses, and evaluate an AI Guard wrapper. The diagram intentionally omits operational attack construction.",
+    "models": [
+      "Claude-3.5 Sonnet",
+      "Gemini-2.0 Flash",
+      "GPT-4o-mini",
+      "AI Guard"
+    ],
+    "features": [
+      "Human assessment of generated responses"
+    ],
+    "datasets": [
+      "Study-specific prompts in English and Italian"
+    ],
+    "results": "The authors report harmful recommendations, misinformation and biased responses across tested models and evaluate wrapper blocking behavior (Tables 1–7).",
+    "metrics": [],
+    "limitations": "Not specified in the source as a separate limitations section. The evaluated models, prompts and languages define the study setting; broader applicability is an HMEG interpretation, not an author-stated limitation.",
+    "opportunity": "Motivates intent-sensitive detection and end-to-end evaluation; a prompt classifier alone cannot prove downstream model safety.",
+    "findings": "The authors report harmful recommendations, misinformation and biased responses across tested models and evaluate wrapper blocking behavior (Tables 1–7).",
+    "scopeNote": "Cross-language findings belong to the source study. HMEG evaluates English prompts only.",
+    "direct": "",
+    "indirect": "",
+    "ensemble": "",
+    "calibration": "",
+    "routing": "",
+    "steps": [
+      "Controlled robustness assessment",
+      "Compare protected and compromised responses",
+      "Human annotation of safety outcomes",
+      "Evaluate a defensive AI Guard wrapper"
+    ],
+    "evidence": {
+      "abstract": [
+        1
+      ],
+      "metadata": [
+        1
+      ],
+      "methodology": [
+        4,
+        5,
+        6
+      ],
+      "datasets": [
+        6
+      ],
+      "results": [
+        6,
+        11
+      ],
+      "limitations": [
+        12
+      ]
+    },
+    "references": [
+      {
+        "title": "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations",
+        "page": 13,
+        "url": "https://arxiv.org/abs/2312.06674"
+      }
+    ],
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "versions": [
+      {
+        "label": "Source version used for claims",
+        "url": "https://doi.org/10.1109/ACCESS.2025.3589112"
+      }
+    ],
+    "figures": []
+  },
+  {
+    "id": "archias",
+    "title": "Improving LLM Outputs Against Jailbreak Attacks With Expert Model Integration",
+    "shortTitle": "Archias · expert integration",
+    "authors": [
+      "Tatia Tsmindashvili",
+      "Ana Kolkhidashvili",
+      "Dachi Kurtskhalia",
+      "Nino Maghlakelidze",
+      "Elene Mekvabishvili",
+      "Guram Dentoshvili",
+      "Orkhan Shamilov",
+      "Zaal Gachechiladze",
+      "Steven Saporta",
+      "David Dachi Choladze"
+    ],
+    "year": 2025,
+    "venue": "IEEE Access 13",
+    "type": "Journal article",
+    "doi": "10.1109/ACCESS.2025.3592458",
+    "arxiv": "2505.17066",
+    "url": "https://doi.org/10.1109/ACCESS.2025.3592458",
+    "pdfUrl": "https://arxiv.org/pdf/2505.17066",
+    "publicPdf": "/research/papers/archias.pdf",
+    "source": "research papers 3.pdf",
+    "pages": 13,
+    "category": "ensemble",
+    "tags": [
+      "expert integration",
+      "transformer",
+      "semantic intent"
+    ],
+    "components": [
+      "meaning",
+      "instruction",
+      "meta"
+    ],
+    "languages": [
+      "English"
+    ],
+    "abstract": "Using LLMs in a production environment presents security challenges that include vulnerabilities to jailbreaks and prompt injections, which can result in harmful outputs for humans or the enterprise. The challenge is amplified when working within a specific domain, as topics generally accepted for LLMs to address, may be irrelevant to that field. These problems can be mitigated for example, by fine-tuning large language models with domain-specific and security-focused data. However, these alone are insufficient, as jailbreak techniques evolve. Additionally, API-accessed models do not offer the flexibility needed to tailor behavior to industry-specific objectives, and in-context learning is not always sufficient and reliable. In response to these challenges, we introduce Archias, an expert model, adept at distinguishing between in-domain and out-of-domain communications. Archias classifies user inquiries into several categories: in-domain (specifically for the automotive industry), malicious questions, price injections, prompt injections, and out-of-domain examples. Our methodology integrates outputs from the expert model (Archias) into prompts, which are then processed by the LLM to generate responses. This method increases the model’s ability to understand the user’s intention and give appropriate answers. Archias can be adjusted, fine-tuned, and used for many different purposes due to its small size. Therefore, it can be simply customized to the needs of any industry. To validate our approach, we created a benchmark dataset for the automotive industry. Furthermore, in the interest of advancing research and development, we release our benchmark dataset to the community.",
+    "abstractPermission": "Verbatim source abstract; line wraps and ligatures normalized. CC BY 4.0; attribution retained.",
+    "summary": "The researchers introduce Archias, a BERT-based expert that classifies requests into automotive-domain and security-related categories. Its predictions are incorporated into prompts sent to a downstream language model, helping that model interpret user intent. A manually crafted 150-example multiple-choice benchmark supports their evaluation, and the authors report improved output quality from expert integration. They acknowledge that open-ended interactions, larger benchmarks and edge cases need further study. For HMEG, this is evidence for investigating specialized pre-generation signals, not a reproduction of the same pipeline. HMEG’s five classifiers produce a guardrail decision through routing and fusion rather than directly modifying a target LLM’s prompt.",
+    "objective": "Improve domain-specific LLM behavior using a specialized classifier’s outputs.",
+    "methodology": "A fine-tuned BERT expert classifies requests into domain and security categories; its outputs are inserted into downstream LLM prompts.",
+    "models": [
+      "BERT / Archias",
+      "Downstream LLMs"
+    ],
+    "features": [
+      "BERT contextual representations",
+      "Category probabilities"
+    ],
+    "datasets": [
+      "Automotive-domain benchmark: 150 manually crafted multiple-choice examples"
+    ],
+    "results": "The authors report improved response quality with expert-output ingestion. The 88% benchmark score described on p. 5 is human performance, not detector accuracy.",
+    "metrics": [],
+    "limitations": "The authors call for larger test sets, open-ended evaluation and broader real-world testing; edge-case misclassification remains.",
+    "opportunity": "Motivates specialized intent signals before an LLM. HMEG combines five experts for classification rather than injecting one expert’s outputs into generation.",
+    "findings": "The authors report improved response quality with expert-output ingestion. The 88% benchmark score described on p. 5 is human performance, not detector accuracy.",
+    "scopeNote": "",
+    "direct": "",
+    "indirect": "",
+    "ensemble": "",
+    "calibration": "",
+    "routing": "",
+    "steps": [
+      "User inquiry",
+      "Fine-tuned BERT / Archias category scores",
+      "Insert expert output into the LLM prompt",
+      "Generate a domain-aware response",
+      "Evaluate benchmark answers"
+    ],
+    "evidence": {
+      "abstract": [
+        1
+      ],
+      "metadata": [
+        1
+      ],
+      "methodology": [
+        3,
+        4
+      ],
+      "datasets": [
+        5
+      ],
+      "results": [
+        5,
+        6,
+        7,
+        10
+      ],
+      "limitations": [
+        5,
+        10
+      ]
+    },
+    "references": [],
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "versions": [
+      {
+        "label": "Source version used for claims",
+        "url": "https://doi.org/10.1109/ACCESS.2025.3592458"
+      }
+    ],
+    "figures": []
+  },
+  {
+    "id": "llama-guard",
+    "title": "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations",
+    "shortTitle": "Llama Guard",
+    "authors": [
+      "Hakan Inan",
+      "Kartikeya Upasani",
+      "Jianfeng Chi",
+      "Rashi Rungta",
+      "Krithika Iyer",
+      "Yuning Mao",
+      "Michael Tontchev",
+      "Qing Hu",
+      "Brian Fuller",
+      "Davide Testuggine",
+      "Madian Khabsa"
+    ],
+    "year": 2023,
+    "venue": "arXiv",
+    "type": "Preprint",
+    "doi": null,
+    "arxiv": "2312.06674v1",
+    "url": "https://arxiv.org/abs/2312.06674v1",
+    "pdfUrl": "https://arxiv.org/pdf/2312.06674v1",
+    "publicPdf": null,
+    "source": "safeguard prompt.pdf",
+    "pages": 15,
+    "category": "llm",
+    "tags": [
+      "transformer",
+      "safety taxonomy",
+      "evaluation"
+    ],
+    "components": [
+      "meaning",
+      "evaluation"
+    ],
+    "languages": [
+      "English"
+    ],
+    "abstract": null,
+    "abstractPermission": "Abstract not republished; follow the official source link.",
+    "summary": "Llama Guard treats safety screening as a language-model classification task. The researchers instruction-tune Llama2-7b using a safety taxonomy and annotated prompt–response data, then adapt its instructions to other evaluation policies. The paper reports AUPRC on its own test data, OpenAI Moderation and ToxicChat rather than a single universal accuracy. It also warns that policy coverage is incomplete and that the guard model can itself be susceptible to prompt injection. HMEG uses this as an external architectural comparison: a large contextual classifier contrasts with specialized lightweight classifiers and selective routing. Neither its published scores nor its broader response-moderation capabilities are claimed as HMEG results.",
+    "objective": "Classify user prompts and model responses against a safety-risk taxonomy.",
+    "methodology": "Instruction-tune Llama2-7b on annotated conversations; generate safe/unsafe classifications and categories with adaptable taxonomy instructions.",
+    "models": [
+      "Instruction-tuned Llama2-7b"
+    ],
+    "features": [
+      "Conversation context",
+      "Safety taxonomy in model instructions"
+    ],
+    "datasets": [
+      "13,997 annotated prompts and responses; 3:1 fine-tuning/evaluation split",
+      "OpenAI Moderation evaluation: 1,680 prompts",
+      "ToxicChat"
+    ],
+    "results": "Table 2 reports AUPRC 0.945 on its prompt test set, 0.847 on OpenAI Moderation, 0.626 on ToxicChat, and 0.953 on its response test set. These are AUPRC, not accuracy.",
+    "metrics": [
+      "AUPRC",
+      "Precision",
+      "Recall",
+      "F1"
+    ],
+    "limitations": "Authors caution about policy coverage, non-English performance and susceptibility of the guard model itself to prompt injection.",
+    "opportunity": "Provides an LLM-based comparison and motivates separating harmful-content classification from jailbreak-specific evaluation.",
+    "findings": "Table 2 reports AUPRC 0.945 on its prompt test set, 0.847 on OpenAI Moderation, 0.626 on ToxicChat, and 0.953 on its response test set. These are AUPRC, not accuracy.",
+    "scopeNote": "",
+    "direct": "",
+    "indirect": "",
+    "ensemble": "",
+    "calibration": "",
+    "routing": "",
+    "steps": [
+      "Conversation input or response",
+      "Safety taxonomy and guidelines",
+      "Instruction-tuned Llama2-7b",
+      "Safe / unsafe and category output",
+      "Evaluate taxonomy-specific performance"
+    ],
+    "evidence": {
+      "abstract": [
+        1
+      ],
+      "metadata": [
+        1
+      ],
+      "methodology": [
+        3,
+        4,
+        5
+      ],
+      "datasets": [
+        5,
+        7
+      ],
+      "results": [
+        8
+      ],
+      "limitations": [
+        10,
+        11
+      ]
+    },
+    "references": [],
+    "license": "Not verified for public redistribution",
+    "licenseUrl": null,
+    "versions": [
+      {
+        "label": "Source version used for claims",
+        "url": "https://arxiv.org/abs/2312.06674v1"
+      }
+    ],
+    "figures": []
+  }
+]

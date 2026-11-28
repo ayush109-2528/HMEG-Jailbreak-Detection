@@ -1,0 +1,90 @@
+[
+  {
+    "index": 2,
+    "filename": "link-2.pdf",
+    "url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/yuan24f/yuan24f.pdf",
+    "pages": 13,
+    "sha256": "811ea9a555c81306e9c0f061e03bb624fdd3d6559524dcb6dbbdac1285b8443c",
+    "status": "read"
+  },
+  {
+    "index": 3,
+    "filename": "link-3.pdf",
+    "url": "https://www.ndss-symposium.org/wp-content/uploads/2026-s1062-paper.pdf",
+    "pages": 18,
+    "sha256": "4011f9fdfb191d6c26a4323a555189a1d936853ced64fa7fb3ea7f3d9b886f17",
+    "status": "read"
+  },
+  {
+    "index": 5,
+    "filename": "link-5.pdf",
+    "url": "https://arxiv.org/pdf/2503.11517",
+    "pages": 22,
+    "sha256": "0237a36409a06ad28a53e7225f7b8a8502c2d80292c1c247dd76381e3c442d81",
+    "status": "read"
+  },
+  {
+    "index": 6,
+    "filename": "link-6.pdf",
+    "url": "https://arxiv.org/pdf/2606.05566",
+    "pages": 21,
+    "sha256": "1a8c2be99c8a923840e066a54ddf9a03438e05a566ccf1dea69d1f1868a4caac",
+    "status": "read"
+  },
+  {
+    "index": 7,
+    "filename": "link-7.pdf",
+    "url": "https://arxiv.org/pdf/2506.10597",
+    "pages": 20,
+    "sha256": "092ea037452ec530770f9d3a57404a6b7ebd6bbc5c6c9525cb00999ce41243a0",
+    "status": "read"
+  },
+  {
+    "index": 8,
+    "filename": "link-8.pdf",
+    "url": "https://aclanthology.org/2025.findings-emnlp.309.pdf",
+    "pages": 31,
+    "sha256": "98fc7f7864d3ac73fd86367b7fcd6d12491264a60a009efa80b098e9b4d38cf6",
+    "status": "read"
+  },
+  {
+    "index": 12,
+    "filename": "link-12.pdf",
+    "url": "https://link.springer.com/content/pdf/10.1007/s10207-026-01264-8.pdf",
+    "pages": 11,
+    "sha256": "34061d6e4a7c94a16485f92ec221af8779656d817d2d68549d6e2872b0022715",
+    "status": "read"
+  },
+  {
+    "index": 15,
+    "filename": "link-15.pdf",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/0f69b4b96a46f284b726fbd70f74fb3b-Paper-Datasets_and_Benchmarks_Track.pdf",
+    "pages": 39,
+    "sha256": "948b5cb6270501197f40f0013bc5c1e02e20eb366f0eb5f9da58d54a59e40ae1",
+    "status": "read"
+  },
+  {
+    "index": 16,
+    "filename": "link-16.pdf",
+    "url": "https://arxiv.org/pdf/2310.03684",
+    "pages": 42,
+    "sha256": "1a34863cbec66628ca4abdaee9ca03a1473879496d42716788e018b6ca9aecfb",
+    "status": "read"
+  },
+  {
+    "index": 17,
+    "filename": "link-17.pdf",
+    "url": "https://arxiv.org/pdf/2308.14132",
+    "pages": 22,
+    "sha256": "c9982c85dadfaa70b6fb9f1e75a90fd952ee627091b4047079ca646ab5069d58",
+    "status": "read"
+  },
+  {
+    "index": 18,
+    "filename": "link-18.pdf",
+    "url": "https://arxiv.org/pdf/2312.14197",
+    "pages": 12,
+    "sha256": "3f8f991fc3e3f507acfad759dfa76e6f94f8bcf49e189def3ddb99a4f64efbeb",
+    "status": "read"
+  }
+]

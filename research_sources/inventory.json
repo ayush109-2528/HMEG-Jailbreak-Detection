@@ -1,0 +1,65 @@
+[
+  {
+    "id": "pdf-1",
+    "filename": "applsci-15-13190-v2.pdf",
+    "sha256": "a2ab1fda10a257e291ba343ace280885c5fd3bd7443e6dedeabf644175849a7c",
+    "pages": 25,
+    "status": "read"
+  },
+  {
+    "id": "pdf-2",
+    "filename": "Building Guardrails for Large Language Models - 2402.01822v2.pdf",
+    "sha256": "71097d06058e6aaedb04c32ec7f2165c9cc698122a1f79aed05328caafbae4f4",
+    "pages": 20,
+    "status": "read"
+  },
+  {
+    "id": "pdf-3",
+    "filename": "Detection and Analysis of Prompt Injection in Indian Multilingual LLMs (2026).pdf",
+    "sha256": "2ec72e1eaf6f5e6055100762136e751af1e679267ee4d4b796f7946414ad0f86",
+    "pages": 22,
+    "status": "read"
+  },
+  {
+    "id": "pdf-4",
+    "filename": "Embedding-based classifiers can detect prompt injection attacks.pdf",
+    "sha256": "f05f0939c58546d3415bfbcc53f085eb266a0086f61c4ddbeb41ce420767dc80",
+    "pages": 11,
+    "status": "recovered official arXiv copy"
+  },
+  {
+    "id": "pdf-5",
+    "filename": "Prompt Injection Detection is Regime-Dependent_ A Deployment-Aware Evaluation with Interpretable Structural Signals - 2605.26999v1.pdf",
+    "sha256": "ba2337c677fafe3d5fe38e8b4e4199d3b05c4672ea95209f03d9267bda432525",
+    "pages": 19,
+    "status": "read"
+  },
+  {
+    "id": "pdf-6",
+    "filename": "research papers 1.pdf",
+    "sha256": "7e1b3c00adad69a2bc8b4d602c2e56bf0bf879fd6af4066bdd6a75ef9d58db9a",
+    "pages": 16,
+    "status": "read"
+  },
+  {
+    "id": "pdf-7",
+    "filename": "research papers 2.pdf",
+    "sha256": "2fd9ccfc44a78f48203054aa9997e7a7e45a98e367ecf3ce90255cd09345c5ee",
+    "pages": 14,
+    "status": "read"
+  },
+  {
+    "id": "pdf-8",
+    "filename": "research papers 3.pdf",
+    "sha256": "a217f77122f350753f1ec7c23012424293caadce879d8ba9e96d82d29171b8b0",
+    "pages": 13,
+    "status": "read"
+  },
+  {
+    "id": "pdf-9",
+    "filename": "safeguard prompt.pdf",
+    "sha256": "638fffc1b40a691db58f40b6b7df32bf9a540e49bc4df9256ee6638d029d86e5",
+    "pages": 15,
+    "status": "read"
+  }
+]

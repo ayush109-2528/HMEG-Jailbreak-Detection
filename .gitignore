@@ -24,3 +24,8 @@ backend/data/*.sqlite*
 backend/data/source_cards/
 backend/data/*.jsonl
 backend/data/*.ftz
+
+# Private literature ingestion
+research_sources/papers/*
+research_sources/extracted/
+!research_sources/papers/.gitkeep
